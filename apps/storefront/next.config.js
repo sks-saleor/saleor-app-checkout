@@ -14,8 +14,17 @@ module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: [apiURL.hostname, ...allowedImageDomains],
+    domains: [apiURL.hostname, 's3.ap-southeast-1.amazonaws.com', ...allowedImageDomains],
     formats: ["image/avif", "image/webp"],
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's3.amazonaws.com',
+        port: '',
+        pathname: '/cdn.titancenter.asia/**',
+      },
+    ],
   },
   trailingSlash: true,
   webpack(config) {
