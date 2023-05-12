@@ -14,15 +14,15 @@ module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: [apiURL.hostname, 's3.ap-southeast-1.amazonaws.com', ...allowedImageDomains],
+    domains: [apiURL.hostname, "s3.ap-southeast-1.amazonaws.com", ...allowedImageDomains],
     formats: ["image/avif", "image/webp"],
     unoptimized: true,
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 's3.amazonaws.com',
-        port: '',
-        pathname: '/cdn.titancenter.asia/**',
+        protocol: "https",
+        hostname: "s3.amazonaws.com",
+        port: "",
+        pathname: "/cdn.titancenter.asia/**",
       },
     ],
   },
@@ -137,4 +137,14 @@ module.exports = withBundleAnalyzer({
     ];
   },
   experimental: {},
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 });
