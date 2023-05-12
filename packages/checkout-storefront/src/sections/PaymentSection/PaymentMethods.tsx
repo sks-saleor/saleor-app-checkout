@@ -9,7 +9,7 @@ export const PaymentMethods = () => {
     changingBillingCountry,
     updateState: { checkoutDeliveryMethodUpdate },
   } = useCheckoutUpdateState();
-
+  console.log("availablePaymentGateways::: ", availablePaymentGateways);
   const { adyen } = availablePaymentGateways;
 
   // delivery methods change total price so we want to wait until the change is done

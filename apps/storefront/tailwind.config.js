@@ -55,9 +55,9 @@ module.exports = {
       borderWidth: {
         DEFAULT: "1px",
       },
-      fontFamily: {
-        sans: ["Inconsolata"],
-      },
+      // fontFamily: {
+      //   sans: ["Helvetica"],
+      // },
       fontWeight: {
         normal: 400,
         regular: 500,

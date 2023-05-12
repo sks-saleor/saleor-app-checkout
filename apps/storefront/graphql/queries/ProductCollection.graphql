@@ -19,6 +19,17 @@ query ProductCollection(
     edges {
       cursor
       node {
+        defaultVariant {
+          pricing {
+            onSale
+            price {
+              gross {
+                amount
+                currency
+              }
+            }
+          }
+        }
         ...ProductCardFragment
       }
     }

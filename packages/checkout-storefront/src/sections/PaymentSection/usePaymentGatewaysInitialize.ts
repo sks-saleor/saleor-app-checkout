@@ -46,6 +46,7 @@ export const usePaymentGatewaysInitialize = () => {
           ),
         }),
         onSuccess: ({ data }) => {
+          console.log("data:::: ", data);
           const parsedConfigs = getParsedPaymentGatewayConfigs(data.gatewayConfigs);
 
           if (!Object.keys(parsedConfigs).length) {

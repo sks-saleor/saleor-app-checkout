@@ -1,20 +1,13 @@
 FROM node:16-slim
+
 WORKDIR /app
 
 # Setup pnpm package manager
 RUN npm install -g pnpm@7.11.0
 
-# Setup proxy to API used in saleor-platform
-RUN apt-get update && apt-get install -y jq
-
 COPY . .
 
-# Remove Cypress from dependencies
-RUN jq 'del(.devDependencies.cypress)' package.json > _.json && mv _.json package.json
 RUN pnpm install
-
-# Env variables
-RUN rm .env
 
 ARG SALEOR_API_URL
 ENV SALEOR_API_URL ${SALEOR_API_URL:-http://localhost:8000/graphql/}

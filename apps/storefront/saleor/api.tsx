@@ -144,6 +144,12 @@ export type AccountInput = {
   languageCode?: InputMaybe<LanguageCodeEnum>;
   /** Family name. */
   lastName?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the user metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  metadata?: InputMaybe<Array<MetadataInput>>;
 };
 
 /** Register a new user. */
@@ -4968,8 +4974,20 @@ export type CustomerInput = {
   languageCode?: InputMaybe<LanguageCodeEnum>;
   /** Family name. */
   lastName?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the user metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  metadata?: InputMaybe<Array<MetadataInput>>;
   /** A note about the user. */
   note?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the user private metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  privateMetadata?: InputMaybe<Array<MetadataInput>>;
 };
 
 /**
@@ -7027,10 +7045,26 @@ export type GiftCardUpdated = Event & {
 /** Represents permission group data. */
 export type Group = Node & {
   __typename?: "Group";
+  /**
+   * List of channels the group has access to.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  accessibleChannels?: Maybe<Array<Channel>>;
   id: Scalars["ID"];
   name: Scalars["String"];
   /** List of group permissions */
   permissions?: Maybe<Array<Permission>>;
+  /**
+   * Determine if the group have restricted access to channels.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  restrictedAccessToChannels: Scalars["Boolean"];
   /** True, if the currently authenticated user has rights to manage a group. */
   userCanManage: Scalars["Boolean"];
   /**
@@ -7172,8 +7206,20 @@ export type InvoiceCreate = {
 };
 
 export type InvoiceCreateInput = {
+  /**
+   * Fields required to update the invoice metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  metadata?: InputMaybe<Array<MetadataInput>>;
   /** Invoice number. */
   number: Scalars["String"];
+  /**
+   * Fields required to update the invoice private metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  privateMetadata?: InputMaybe<Array<MetadataInput>>;
   /** URL of an invoice to download. */
   url: Scalars["String"];
 };
@@ -10538,7 +10584,7 @@ export type Mutation = {
   taxExemptionManage?: Maybe<TaxExemptionManage>;
   /** Create JWT token. */
   tokenCreate?: Maybe<CreateToken>;
-  /** Refresh JWT token. Mutation tries to take refreshToken from the input.If it fails it will try to take refreshToken from the http-only cookie -refreshToken. csrfToken is required when refreshToken is provided as a cookie. */
+  /** Refresh JWT token. Mutation tries to take refreshToken from the input. If it fails it will try to take `refreshToken` from the http-only cookie `refreshToken`. `csrfToken` is required when `refreshToken` is provided as a cookie. */
   tokenRefresh?: Maybe<RefreshToken>;
   /** Verify JWT token. */
   tokenVerify?: Maybe<VerifyToken>;
@@ -10733,7 +10779,7 @@ export type Mutation = {
   /**
    * Updates a webhook subscription.
    *
-   * Requires one of the following permissions: MANAGE_APPS.
+   * Requires one of the following permissions: MANAGE_APPS, AUTHENTICATED_APP.
    */
   webhookUpdate?: Maybe<WebhookUpdate>;
 };
@@ -13292,6 +13338,27 @@ export type OrderFullyPaid = Event & {
 };
 
 /**
+ * The order is fully refunded.
+ *
+ * Added in Saleor 3.14.
+ *
+ * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+ */
+export type OrderFullyRefunded = Event & {
+  __typename?: "OrderFullyRefunded";
+  /** Time of the event. */
+  issuedAt?: Maybe<Scalars["DateTime"]>;
+  /** The user or application that triggered the event. */
+  issuingPrincipal?: Maybe<IssuingPrincipal>;
+  /** The order the event relates to. */
+  order?: Maybe<Order>;
+  /** The application receiving the webhook. */
+  recipient?: Maybe<App>;
+  /** Saleor version that triggered the event. */
+  version?: Maybe<Scalars["String"]>;
+};
+
+/**
  * Adds granted refund to the order.
  *
  * Added in Saleor 3.13.
@@ -13680,6 +13747,27 @@ export type OrderOrCheckout = Checkout | Order;
 export type OrderOriginEnum = "CHECKOUT" | "DRAFT" | "REISSUE";
 
 /**
+ * Payment has been made. The order may be partially or fully paid.
+ *
+ * Added in Saleor 3.14.
+ *
+ * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+ */
+export type OrderPaid = Event & {
+  __typename?: "OrderPaid";
+  /** Time of the event. */
+  issuedAt?: Maybe<Scalars["DateTime"]>;
+  /** The user or application that triggered the event. */
+  issuingPrincipal?: Maybe<IssuingPrincipal>;
+  /** The order the event relates to. */
+  order?: Maybe<Order>;
+  /** The application receiving the webhook. */
+  recipient?: Maybe<App>;
+  /** Saleor version that triggered the event. */
+  version?: Maybe<Scalars["String"]>;
+};
+
+/**
  * Refund an order.
  *
  * Requires one of the following permissions: MANAGE_ORDERS.
@@ -13716,6 +13804,27 @@ export type OrderRefundProductsInput = {
   includeShippingCosts?: InputMaybe<Scalars["Boolean"]>;
   /** List of unfulfilled lines to refund. */
   orderLines?: InputMaybe<Array<OrderRefundLineInput>>;
+};
+
+/**
+ * The order received a refund. The order may be partially or fully refunded.
+ *
+ * Added in Saleor 3.14.
+ *
+ * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+ */
+export type OrderRefunded = Event & {
+  __typename?: "OrderRefunded";
+  /** Time of the event. */
+  issuedAt?: Maybe<Scalars["DateTime"]>;
+  /** The user or application that triggered the event. */
+  issuingPrincipal?: Maybe<IssuingPrincipal>;
+  /** The order the event relates to. */
+  order?: Maybe<Order>;
+  /** The application receiving the webhook. */
+  recipient?: Maybe<App>;
+  /** Saleor version that triggered the event. */
+  version?: Maybe<Scalars["String"]>;
 };
 
 export type OrderReturnFulfillmentLineInput = {
@@ -15371,12 +15480,28 @@ export type PermissionGroupCreate = {
 };
 
 export type PermissionGroupCreateInput = {
+  /**
+   * List of channels to assign to this group.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  addChannels?: InputMaybe<Array<Scalars["ID"]>>;
   /** List of permission code names to assign to this group. */
   addPermissions?: InputMaybe<Array<PermissionEnum>>;
   /** List of users to assign to this group. */
   addUsers?: InputMaybe<Array<Scalars["ID"]>>;
   /** Group name. */
   name: Scalars["String"];
+  /**
+   * Determine if the group has restricted access to channels.  DEFAULT: False
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  restrictedAccessToChannels?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /**
@@ -15432,6 +15557,8 @@ export type PermissionGroupDeleted = Event & {
 
 export type PermissionGroupError = {
   __typename?: "PermissionGroupError";
+  /** List of chnnels IDs which causes the error. */
+  channels?: Maybe<Array<Scalars["ID"]>>;
   /** The error code. */
   code: PermissionGroupErrorCode;
   /** Name of a field that caused the error. A value of `null` indicates that the error isn't associated with a particular field. */
@@ -15450,6 +15577,7 @@ export type PermissionGroupErrorCode =
   | "CANNOT_REMOVE_FROM_LAST_GROUP"
   | "DUPLICATED_INPUT_ITEM"
   | "LEFT_NOT_MANAGEABLE_PERMISSION"
+  | "OUT_OF_SCOPE_CHANNEL"
   | "OUT_OF_SCOPE_PERMISSION"
   | "OUT_OF_SCOPE_USER"
   | "REQUIRED"
@@ -15486,16 +15614,40 @@ export type PermissionGroupUpdate = {
 };
 
 export type PermissionGroupUpdateInput = {
+  /**
+   * List of channels to assign to this group.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  addChannels?: InputMaybe<Array<Scalars["ID"]>>;
   /** List of permission code names to assign to this group. */
   addPermissions?: InputMaybe<Array<PermissionEnum>>;
   /** List of users to assign to this group. */
   addUsers?: InputMaybe<Array<Scalars["ID"]>>;
   /** Group name. */
   name?: InputMaybe<Scalars["String"]>;
+  /**
+   * List of channels to unassign from this group.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  removeChannels?: InputMaybe<Array<Scalars["ID"]>>;
   /** List of permission code names to unassign from this group. */
   removePermissions?: InputMaybe<Array<PermissionEnum>>;
   /** List of users to unassign from this group. */
   removeUsers?: InputMaybe<Array<Scalars["ID"]>>;
+  /**
+   * Determine if the group has restricted access to channels.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  restrictedAccessToChannels?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /**
@@ -17656,6 +17808,12 @@ export type ProductVariantBulkError = {
   /** The error message. */
   message?: Maybe<Scalars["String"]>;
   /**
+   * Path to field that caused the error. A value of `null` indicates that the error isn't associated with a particular field.
+   *
+   * Added in Saleor 3.14.
+   */
+  path?: Maybe<Scalars["String"]>;
+  /**
    * List of stocks IDs which causes the error.
    *
    * Added in Saleor 3.12.
@@ -18343,7 +18501,11 @@ export type Query = {
   __typename?: "Query";
   _entities?: Maybe<Array<Maybe<_Entity>>>;
   _service?: Maybe<_Service>;
-  /** Look up an address by ID. */
+  /**
+   * Look up an address by ID.
+   *
+   * Requires one of the following permissions: MANAGE_USERS, OWNER.
+   */
   address?: Maybe<Address>;
   /** Returns address validation rules. */
   addressValidationRules?: Maybe<AddressValidationData>;
@@ -19258,7 +19420,7 @@ export type ReducedRate = {
   rateType: Scalars["String"];
 };
 
-/** Refresh JWT token. Mutation tries to take refreshToken from the input.If it fails it will try to take refreshToken from the http-only cookie -refreshToken. csrfToken is required when refreshToken is provided as a cookie. */
+/** Refresh JWT token. Mutation tries to take refreshToken from the input. If it fails it will try to take `refreshToken` from the http-only cookie `refreshToken`. `csrfToken` is required when `refreshToken` is provided as a cookie. */
 export type RefreshToken = {
   __typename?: "RefreshToken";
   /** @deprecated This field will be removed in Saleor 4.0. Use `errors` field instead. */
@@ -21174,8 +21336,20 @@ export type StaffCreateInput = {
   isActive?: InputMaybe<Scalars["Boolean"]>;
   /** Family name. */
   lastName?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the user metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  metadata?: InputMaybe<Array<MetadataInput>>;
   /** A note about the user. */
   note?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the user private metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  privateMetadata?: InputMaybe<Array<MetadataInput>>;
   /** URL of a view where users should be redirected to set the password. URL in RFC 1808 format. */
   redirectUrl?: InputMaybe<Scalars["String"]>;
 };
@@ -21341,8 +21515,20 @@ export type StaffUpdateInput = {
   isActive?: InputMaybe<Scalars["Boolean"]>;
   /** Family name. */
   lastName?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the user metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  metadata?: InputMaybe<Array<MetadataInput>>;
   /** A note about the user. */
   note?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the user private metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  privateMetadata?: InputMaybe<Array<MetadataInput>>;
   /** List of permission group IDs from which user should be unassigned. */
   removeGroups?: InputMaybe<Array<Scalars["ID"]>>;
 };
@@ -23302,8 +23488,20 @@ export type TranslationUpdated = Event & {
 };
 
 export type UpdateInvoiceInput = {
+  /**
+   * Fields required to update the invoice metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  metadata?: InputMaybe<Array<MetadataInput>>;
   /** Invoice number */
   number?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the invoice private metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  privateMetadata?: InputMaybe<Array<MetadataInput>>;
   /** URL of an invoice to download. */
   url?: InputMaybe<Scalars["String"]>;
 };
@@ -23343,6 +23541,14 @@ export type UploadErrorCode = "GRAPHQL_ERROR";
 export type User = Node &
   ObjectWithMetadata & {
     __typename?: "User";
+    /**
+     * List of channels the user has access to. The sum of channels from all user groups. If at least one group has `restrictedAccessToChannels` set to False - all channels are returned.
+     *
+     * Added in Saleor 3.14.
+     *
+     * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+     */
+    accessibleChannels?: Maybe<Array<Channel>>;
     /** List of all user's addresses. */
     addresses: Array<Address>;
     avatar?: Maybe<Image>;
@@ -23442,6 +23648,14 @@ export type User = Node &
      * Note: this API is currently in Feature Preview and can be subject to changes at later point.
      */
     privateMetafields?: Maybe<Scalars["Metadata"]>;
+    /**
+     * Determine if user have restricted access to channels. False if at least one user group has `restrictedAccessToChannels` set to False.
+     *
+     * Added in Saleor 3.14.
+     *
+     * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+     */
+    restrictedAccessToChannels: Scalars["Boolean"];
     /** List of stored payment sources. */
     storedPaymentSources?: Maybe<Array<PaymentSource>>;
     updatedAt: Scalars["DateTime"];
@@ -23597,8 +23811,20 @@ export type UserCreateInput = {
   languageCode?: InputMaybe<LanguageCodeEnum>;
   /** Family name. */
   lastName?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the user metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  metadata?: InputMaybe<Array<MetadataInput>>;
   /** A note about the user. */
   note?: InputMaybe<Scalars["String"]>;
+  /**
+   * Fields required to update the user private metadata.
+   *
+   * Added in Saleor 3.14.
+   */
+  privateMetadata?: InputMaybe<Array<MetadataInput>>;
   /** URL of a view where users should be redirected to set the password. URL in RFC 1808 format. */
   redirectUrl?: InputMaybe<Scalars["String"]>;
 };
@@ -24976,11 +25202,35 @@ export type WebhookEventTypeAsyncEnum =
   /** Payment is made and an order is fully paid. */
   | "ORDER_FULLY_PAID"
   /**
+   * The order is fully refunded.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  | "ORDER_FULLY_REFUNDED"
+  /**
    * An order metadata is updated.
    *
    * Added in Saleor 3.8.
    */
   | "ORDER_METADATA_UPDATED"
+  /**
+   * Payment has been made. The order may be partially or fully paid.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  | "ORDER_PAID"
+  /**
+   * The order received a refund. The order may be partially or fully refunded.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  | "ORDER_REFUNDED"
   /** An order is updated; triggered for all changes related to an order; covers all other order webhooks, except for ORDER_CREATED. */
   | "ORDER_UPDATED"
   /** A new page is created. */
@@ -25298,11 +25548,35 @@ export type WebhookEventTypeEnum =
   /** Payment is made and an order is fully paid. */
   | "ORDER_FULLY_PAID"
   /**
+   * The order is fully refunded.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  | "ORDER_FULLY_REFUNDED"
+  /**
    * An order metadata is updated.
    *
    * Added in Saleor 3.8.
    */
   | "ORDER_METADATA_UPDATED"
+  /**
+   * Payment has been made. The order may be partially or fully paid.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  | "ORDER_PAID"
+  /**
+   * The order received a refund. The order may be partially or fully refunded.
+   *
+   * Added in Saleor 3.14.
+   *
+   * Note: this API is currently in Feature Preview and can be subject to changes at later point.
+   */
+  | "ORDER_REFUNDED"
   /** An order is updated; triggered for all changes related to an order; covers all other order webhooks, except for ORDER_CREATED. */
   | "ORDER_UPDATED"
   /** A new page is created. */
@@ -25619,7 +25893,10 @@ export type WebhookSampleEventTypeEnum =
   | "ORDER_EXPIRED"
   | "ORDER_FULFILLED"
   | "ORDER_FULLY_PAID"
+  | "ORDER_FULLY_REFUNDED"
   | "ORDER_METADATA_UPDATED"
+  | "ORDER_PAID"
+  | "ORDER_REFUNDED"
   | "ORDER_UPDATED"
   | "PAGE_CREATED"
   | "PAGE_DELETED"
@@ -25713,7 +25990,7 @@ export type WebhookTriggerErrorCode =
 /**
  * Updates a webhook subscription.
  *
- * Requires one of the following permissions: MANAGE_APPS.
+ * Requires one of the following permissions: MANAGE_APPS, AUTHENTICATED_APP.
  */
 export type WebhookUpdate = {
   __typename?: "WebhookUpdate";
@@ -28463,6 +28740,17 @@ export type ProductCollectionQuery = {
         id: string;
         slug: string;
         name: string;
+        defaultVariant?: {
+          __typename?: "ProductVariant";
+          pricing?: {
+            __typename?: "VariantPricingInfo";
+            onSale?: boolean | null;
+            price?: {
+              __typename?: "TaxedMoney";
+              gross: { __typename?: "Money"; amount: number; currency: string };
+            } | null;
+          } | null;
+        } | null;
         translation?: {
           __typename?: "ProductTranslation";
           id: string;
@@ -31120,6 +31408,17 @@ export const ProductCollectionDocument = gql`
       edges {
         cursor
         node {
+          defaultVariant {
+            pricing {
+              onSale
+              price {
+                gross {
+                  amount
+                  currency
+                }
+              }
+            }
+          }
           ...ProductCardFragment
         }
       }
@@ -35009,17 +35308,21 @@ export type GiftCardUpdatedFieldPolicy = {
   version?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type GroupKeySpecifier = (
+  | "accessibleChannels"
   | "id"
   | "name"
   | "permissions"
+  | "restrictedAccessToChannels"
   | "userCanManage"
   | "users"
   | GroupKeySpecifier
 )[];
 export type GroupFieldPolicy = {
+  accessibleChannels?: FieldPolicy<any> | FieldReadFunction<any>;
   id?: FieldPolicy<any> | FieldReadFunction<any>;
   name?: FieldPolicy<any> | FieldReadFunction<any>;
   permissions?: FieldPolicy<any> | FieldReadFunction<any>;
+  restrictedAccessToChannels?: FieldPolicy<any> | FieldReadFunction<any>;
   userCanManage?: FieldPolicy<any> | FieldReadFunction<any>;
   users?: FieldPolicy<any> | FieldReadFunction<any>;
 };
@@ -36809,6 +37112,21 @@ export type OrderFullyPaidFieldPolicy = {
   recipient?: FieldPolicy<any> | FieldReadFunction<any>;
   version?: FieldPolicy<any> | FieldReadFunction<any>;
 };
+export type OrderFullyRefundedKeySpecifier = (
+  | "issuedAt"
+  | "issuingPrincipal"
+  | "order"
+  | "recipient"
+  | "version"
+  | OrderFullyRefundedKeySpecifier
+)[];
+export type OrderFullyRefundedFieldPolicy = {
+  issuedAt?: FieldPolicy<any> | FieldReadFunction<any>;
+  issuingPrincipal?: FieldPolicy<any> | FieldReadFunction<any>;
+  order?: FieldPolicy<any> | FieldReadFunction<any>;
+  recipient?: FieldPolicy<any> | FieldReadFunction<any>;
+  version?: FieldPolicy<any> | FieldReadFunction<any>;
+};
 export type OrderGrantRefundCreateKeySpecifier = (
   | "errors"
   | "grantedRefund"
@@ -37036,6 +37354,21 @@ export type OrderMetadataUpdatedFieldPolicy = {
   recipient?: FieldPolicy<any> | FieldReadFunction<any>;
   version?: FieldPolicy<any> | FieldReadFunction<any>;
 };
+export type OrderPaidKeySpecifier = (
+  | "issuedAt"
+  | "issuingPrincipal"
+  | "order"
+  | "recipient"
+  | "version"
+  | OrderPaidKeySpecifier
+)[];
+export type OrderPaidFieldPolicy = {
+  issuedAt?: FieldPolicy<any> | FieldReadFunction<any>;
+  issuingPrincipal?: FieldPolicy<any> | FieldReadFunction<any>;
+  order?: FieldPolicy<any> | FieldReadFunction<any>;
+  recipient?: FieldPolicy<any> | FieldReadFunction<any>;
+  version?: FieldPolicy<any> | FieldReadFunction<any>;
+};
 export type OrderRefundKeySpecifier = (
   | "errors"
   | "order"
@@ -37046,6 +37379,21 @@ export type OrderRefundFieldPolicy = {
   errors?: FieldPolicy<any> | FieldReadFunction<any>;
   order?: FieldPolicy<any> | FieldReadFunction<any>;
   orderErrors?: FieldPolicy<any> | FieldReadFunction<any>;
+};
+export type OrderRefundedKeySpecifier = (
+  | "issuedAt"
+  | "issuingPrincipal"
+  | "order"
+  | "recipient"
+  | "version"
+  | OrderRefundedKeySpecifier
+)[];
+export type OrderRefundedFieldPolicy = {
+  issuedAt?: FieldPolicy<any> | FieldReadFunction<any>;
+  issuingPrincipal?: FieldPolicy<any> | FieldReadFunction<any>;
+  order?: FieldPolicy<any> | FieldReadFunction<any>;
+  recipient?: FieldPolicy<any> | FieldReadFunction<any>;
+  version?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type OrderSettingsKeySpecifier = (
   | "automaticallyConfirmAllNewOrders"
@@ -37949,6 +38297,7 @@ export type PermissionGroupDeletedFieldPolicy = {
   version?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type PermissionGroupErrorKeySpecifier = (
+  | "channels"
   | "code"
   | "field"
   | "message"
@@ -37957,6 +38306,7 @@ export type PermissionGroupErrorKeySpecifier = (
   | PermissionGroupErrorKeySpecifier
 )[];
 export type PermissionGroupErrorFieldPolicy = {
+  channels?: FieldPolicy<any> | FieldReadFunction<any>;
   code?: FieldPolicy<any> | FieldReadFunction<any>;
   field?: FieldPolicy<any> | FieldReadFunction<any>;
   message?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -38913,6 +39263,7 @@ export type ProductVariantBulkErrorKeySpecifier = (
   | "code"
   | "field"
   | "message"
+  | "path"
   | "stocks"
   | "values"
   | "warehouses"
@@ -38925,6 +39276,7 @@ export type ProductVariantBulkErrorFieldPolicy = {
   code?: FieldPolicy<any> | FieldReadFunction<any>;
   field?: FieldPolicy<any> | FieldReadFunction<any>;
   message?: FieldPolicy<any> | FieldReadFunction<any>;
+  path?: FieldPolicy<any> | FieldReadFunction<any>;
   stocks?: FieldPolicy<any> | FieldReadFunction<any>;
   values?: FieldPolicy<any> | FieldReadFunction<any>;
   warehouses?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -41440,6 +41792,7 @@ export type UploadErrorFieldPolicy = {
   message?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type UserKeySpecifier = (
+  | "accessibleChannels"
   | "addresses"
   | "avatar"
   | "checkout"
@@ -41470,12 +41823,14 @@ export type UserKeySpecifier = (
   | "privateMetadata"
   | "privateMetafield"
   | "privateMetafields"
+  | "restrictedAccessToChannels"
   | "storedPaymentSources"
   | "updatedAt"
   | "userPermissions"
   | UserKeySpecifier
 )[];
 export type UserFieldPolicy = {
+  accessibleChannels?: FieldPolicy<any> | FieldReadFunction<any>;
   addresses?: FieldPolicy<any> | FieldReadFunction<any>;
   avatar?: FieldPolicy<any> | FieldReadFunction<any>;
   checkout?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -41506,6 +41861,7 @@ export type UserFieldPolicy = {
   privateMetadata?: FieldPolicy<any> | FieldReadFunction<any>;
   privateMetafield?: FieldPolicy<any> | FieldReadFunction<any>;
   privateMetafields?: FieldPolicy<any> | FieldReadFunction<any>;
+  restrictedAccessToChannels?: FieldPolicy<any> | FieldReadFunction<any>;
   storedPaymentSources?: FieldPolicy<any> | FieldReadFunction<any>;
   updatedAt?: FieldPolicy<any> | FieldReadFunction<any>;
   userPermissions?: FieldPolicy<any> | FieldReadFunction<any>;
@@ -44216,6 +44572,13 @@ export type StrictTypedTypePolicies = {
     keyFields?: false | OrderFullyPaidKeySpecifier | (() => undefined | OrderFullyPaidKeySpecifier);
     fields?: OrderFullyPaidFieldPolicy;
   };
+  OrderFullyRefunded?: Omit<TypePolicy, "fields" | "keyFields"> & {
+    keyFields?:
+      | false
+      | OrderFullyRefundedKeySpecifier
+      | (() => undefined | OrderFullyRefundedKeySpecifier);
+    fields?: OrderFullyRefundedFieldPolicy;
+  };
   OrderGrantRefundCreate?: Omit<TypePolicy, "fields" | "keyFields"> & {
     keyFields?:
       | false
@@ -44304,9 +44667,17 @@ export type StrictTypedTypePolicies = {
       | (() => undefined | OrderMetadataUpdatedKeySpecifier);
     fields?: OrderMetadataUpdatedFieldPolicy;
   };
+  OrderPaid?: Omit<TypePolicy, "fields" | "keyFields"> & {
+    keyFields?: false | OrderPaidKeySpecifier | (() => undefined | OrderPaidKeySpecifier);
+    fields?: OrderPaidFieldPolicy;
+  };
   OrderRefund?: Omit<TypePolicy, "fields" | "keyFields"> & {
     keyFields?: false | OrderRefundKeySpecifier | (() => undefined | OrderRefundKeySpecifier);
     fields?: OrderRefundFieldPolicy;
+  };
+  OrderRefunded?: Omit<TypePolicy, "fields" | "keyFields"> & {
+    keyFields?: false | OrderRefundedKeySpecifier | (() => undefined | OrderRefundedKeySpecifier);
+    fields?: OrderRefundedFieldPolicy;
   };
   OrderSettings?: Omit<TypePolicy, "fields" | "keyFields"> & {
     keyFields?: false | OrderSettingsKeySpecifier | (() => undefined | OrderSettingsKeySpecifier);

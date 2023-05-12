@@ -6,6 +6,7 @@ import React from "react";
 import { usePaths } from "@/lib/paths";
 import { translate } from "@/lib/translations";
 import { ProductCardFragment } from "@/saleor/api";
+import { formatAsMoney } from "@/lib/util";
 
 export interface ProductCardProps {
   product: ProductCardFragment;
@@ -29,6 +30,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const paths = usePaths();
   const secondaryDescription = getCardSecondaryDescription(product);
   const thumbnailUrl = product.media?.find((media) => media.type === "IMAGE")?.url;
+  const price = product?.defaultVariant?.pricing?.price?.gross;
 
   return (
     <li key={product.id} className="w-full">
@@ -57,7 +59,14 @@ export function ProductCard({ product }: ProductCardProps) {
             {translate(product, "name")}
           </p>
           {secondaryDescription && (
-            <p className="block text-md font-normal text-main underline">{secondaryDescription}</p>
+            <p className="block text-md font-normal text-main underline mt-1.5">
+              {secondaryDescription}
+            </p>
+          )}
+          {price?.amount && (
+            <h2 className="text-md font-bold tracking-tight text-gray-800 mt-1.5">
+              {formatAsMoney(price?.amount, price?.currency)}
+            </h2>
           )}
         </a>
       </Link>

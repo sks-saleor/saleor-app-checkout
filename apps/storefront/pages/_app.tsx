@@ -1,3 +1,4 @@
+import "styles/sks-fonts.css";
 import "styles/globals.css";
 
 import { ApolloProvider } from "@apollo/client";
