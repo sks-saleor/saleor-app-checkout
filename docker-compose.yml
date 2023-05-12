@@ -13,7 +13,7 @@ services:
         - CLOUD_DEPLOYMENT_URL=
     ports:
       - 3001:3001
-    command: pnpm turbo run start --filter=saleor-app-checkout...
+    command: pnpm turbo run dev --filter=saleor-app-checkout...
   storefront:
     container_name: storefront
     build:
@@ -27,4 +27,4 @@ services:
         - CLOUD_DEPLOYMENT_URL=
     ports:
       - 3000:3000
-    command: sh -c '(nginx &) && pnpm turbo run start --filter=storefront...'
+    command: pnpm turbo run dev --filter=storefront...
