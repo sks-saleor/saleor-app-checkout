@@ -8,8 +8,11 @@ import { translate } from "@/lib/translations";
 import { ProductCardFragment } from "@/saleor/api";
 import { formatAsMoney } from "@/lib/util";
 
+interface ProductProps extends ProductCardFragment {
+  defaultVariant: any;
+}
 export interface ProductCardProps {
-  product: ProductCardFragment;
+  product: ProductProps;
 }
 
 const getCardSecondaryDescription = (product: ProductCardFragment) => {
