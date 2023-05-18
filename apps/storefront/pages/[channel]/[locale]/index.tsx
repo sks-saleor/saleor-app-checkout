@@ -12,6 +12,7 @@ import {
   HomepageBlocksQueryVariables,
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/auth/useAuthenticatedApolloClient";
+import BannerPage from "@/components/BannerPage";
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const result: ApolloQueryResult<HomepageBlocksQuery> = await serverApolloClient.query<
@@ -32,11 +33,12 @@ function Home({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <BaseSeo />
-      <div className="py-10">
+      <div className="pb-10">
         <header className="mb-4">
           <div className="container" />
         </header>
         <main>
+          <BannerPage />
           <div className="container">
             {menuData?.menu?.items?.map((m) => {
               if (!m) {

@@ -8,8 +8,6 @@ import { usePaths } from "@/lib/paths";
 import { useFooterMenuQuery } from "@/saleor/api";
 
 import { Box } from "../Box";
-import { ChannelDropdown } from "../regionDropdowns/ChannelDropdown";
-import { LocaleDropdown } from "../regionDropdowns/LocaleDropdown";
 import { useRegions } from "../RegionsProvider";
 import styles from "./Footer.module.css";
 
@@ -31,87 +29,87 @@ export function Footer({ className, ...rest }: FooterProps) {
   }
 
   const menu = data?.menu?.items || [];
-
+  // console.log("menu:: ", menu);
   return (
-    <footer className={clsx(styles.footer, className)} {...rest}>
-      <Box className={styles["footer-inner"]}>
-        <div className="flex mb-14 sm:mb-10">
-          <Link href={paths.$url()} passHref legacyBehavior>
-            <a href="pass" className="hidden sm:inline-block">
-              <div className="mt-px group block h-16 w-28 relative grayscale">
-                <Image src="/saleor.svg" alt="Saleor logo" layout="fill" />
-              </div>
-            </a>
-          </Link>
-          <div className="grid grid-cols-2 gap-[2rem] w-full sm:w-auto sm:flex sm:flex-wrap sm:justify-end sm:ml-auto">
-            {menu.map((item) => (
-              <div className="sm:ml-14" key={item?.id}>
-                {item?.url ? (
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles["menu-heading"]}
-                  >
-                    {item?.name}
-                  </a>
-                ) : (
-                  <Link
-                    href={getLinkPath(item, currentChannel.slug, currentLocale)}
-                    passHref
-                    legacyBehavior
-                  >
-                    <a href="pass" className={styles["menu-heading"]}>
+    <>
+      <hr className={styles["footer-hr"]} />
+      <footer className={clsx(styles.footer, className)} {...rest}>
+        <Box className={styles["footer-inner"]}>
+          <div className="flex mb-14 sm:mb-0">
+            <div className="md:border-r-[0.5px] md:border-[#A5A5A5] md:pr-[100px]">
+              <Link href={paths.$url()} passHref legacyBehavior>
+                <a href="pass" className="hidden sm:inline-block">
+                  <div className="mt-px group block h-[79px] w-[191px] relative">
+                    <Image src="/saleor.svg" alt="Le Story logo" layout="fill" />
+                  </div>
+                </a>
+              </Link>
+              <h5 className="text-[15px] font-bold leading-[17px] mt-4">
+                Got Questions? Call us 24/7!
+              </h5>
+              <h1 className="text-[30px] font-bold text-[#1D87AD] mt-4">(855) 222 222</h1>
+            </div>
+            <div className="grid grid-cols-2 gap-[2rem] w-full sm:w-auto sm:flex sm:flex-wrap sm:justify-end sm:ml-auto">
+              {menu.map((item) => (
+                <div className="sm:ml-14" key={item?.id}>
+                  {item?.url ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles["menu-heading"]}
+                    >
                       {item?.name}
                     </a>
-                  </Link>
-                )}
-                <ul className={styles.menu}>
-                  {item?.children?.map((sub) => (
-                    <li key={sub?.id}>
-                      {sub?.url ? (
-                        <a
-                          href={fixMenuItemLocalhostUrl(sub.url)}
-                          target="_blank"
-                          rel="noreferrer"
-                          className={styles["menu-link"]}
-                          data-testid={`footerExternalLinks${sub?.name}`}
-                        >
-                          {sub?.name}
-                        </a>
-                      ) : (
-                        <Link
-                          href={getLinkPath(sub, currentChannel.slug, currentLocale)}
-                          passHref
-                          legacyBehavior
-                        >
+                  ) : (
+                    <Link
+                      href={getLinkPath(item, currentChannel.slug, currentLocale)}
+                      passHref
+                      legacyBehavior
+                    >
+                      <a href="pass" className={styles["menu-heading"]}>
+                        {item?.name}
+                      </a>
+                    </Link>
+                  )}
+                  <ul className={styles.menu}>
+                    {item?.children?.map((sub) => (
+                      <li key={sub?.id}>
+                        {sub?.url ? (
                           <a
-                            href="pass"
+                            href={fixMenuItemLocalhostUrl(sub.url)}
+                            target="_blank"
+                            rel="noreferrer"
                             className={styles["menu-link"]}
-                            data-testid={`footerInternalLinks${sub?.name}`}
+                            data-testid={`footerExternalLinks${sub?.name}`}
                           >
                             {sub?.name}
                           </a>
-                        </Link>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+                        ) : (
+                          <Link
+                            href={getLinkPath(sub, currentChannel.slug, currentLocale)}
+                            passHref
+                            legacyBehavior
+                          >
+                            <a
+                              href="pass"
+                              className={styles["menu-link"]}
+                              data-testid={`footerInternalLinks${sub?.name}`}
+                            >
+                              {sub?.name}
+                            </a>
+                          </Link>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="flex items-center">
-          <p className="text-sm text-main-3 flex-grow">
-            © Copyright 2018 - {new Date().getFullYear()} Saleor Commerce
-          </p>
-          <div className="invisible md:visible flex gap-4">
-            <ChannelDropdown horizontalAlignment="right" />
-            <LocaleDropdown horizontalAlignment="right" />
-          </div>
-        </div>
-      </Box>
-    </footer>
+        </Box>
+      </footer>
+    </>
   );
 }
 

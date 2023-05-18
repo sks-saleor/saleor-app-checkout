@@ -28583,6 +28583,26 @@ export type PageQuery = {
   } | null;
 };
 
+export type PageBannerQueryVariables = Exact<{
+  slug: Scalars["String"];
+}>;
+
+export type PageBannerQuery = {
+  __typename?: "Query";
+  page?: {
+    __typename?: "Page";
+    id: string;
+    title: string;
+    attributes: Array<{
+      __typename?: "SelectedAttribute";
+      values: Array<{
+        __typename?: "AttributeValue";
+        file?: { __typename?: "File"; url: string } | null;
+      }>;
+    }>;
+  } | null;
+};
+
 export type PagePathsQueryVariables = Exact<{
   after?: InputMaybe<Scalars["String"]>;
 }>;
@@ -31288,6 +31308,56 @@ export function usePageLazyQuery(
 export type PageQueryHookResult = ReturnType<typeof usePageQuery>;
 export type PageLazyQueryHookResult = ReturnType<typeof usePageLazyQuery>;
 export type PageQueryResult = Apollo.QueryResult<PageQuery, PageQueryVariables>;
+export const PageBannerDocument = gql`
+  query PageBanner($slug: String!) {
+    page(slug: $slug) {
+      id
+      title
+      attributes {
+        values {
+          file {
+            url
+          }
+        }
+      }
+    }
+  }
+`;
+
+/**
+ * __usePageBannerQuery__
+ *
+ * To run a query within a React component, call `usePageBannerQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageBannerQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageBannerQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function usePageBannerQuery(
+  baseOptions: Apollo.QueryHookOptions<PageBannerQuery, PageBannerQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<PageBannerQuery, PageBannerQueryVariables>(PageBannerDocument, options);
+}
+export function usePageBannerLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<PageBannerQuery, PageBannerQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<PageBannerQuery, PageBannerQueryVariables>(
+    PageBannerDocument,
+    options
+  );
+}
+export type PageBannerQueryHookResult = ReturnType<typeof usePageBannerQuery>;
+export type PageBannerLazyQueryHookResult = ReturnType<typeof usePageBannerLazyQuery>;
+export type PageBannerQueryResult = Apollo.QueryResult<PageBannerQuery, PageBannerQueryVariables>;
 export const PagePathsDocument = gql`
   query PagePaths($after: String) {
     pages(first: 100, after: $after) {

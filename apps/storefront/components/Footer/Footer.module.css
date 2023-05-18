@@ -1,14 +1,18 @@
 .footer {
-  @apply sm:container mb-18 sm:mb-15 mt-16;
+  @apply sm:container;
 }
 
 .footer-inner {
-  @apply px-6 border-l-0 border-r-0 sm:border-l-2 sm:border-r-2;
+  @apply px-6 border-0;
+}
+.footer-hr {
+  @apply border-[0.5px];
 }
 
 @screen sm {
   .footer-inner {
     padding: calc(theme("spacing.10") - theme("borderWidth.2"));
+    padding-bottom: theme("spacing.5");
   }
 }
 

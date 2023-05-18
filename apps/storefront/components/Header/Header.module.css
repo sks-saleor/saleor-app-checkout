@@ -1,0 +1,7 @@
+.header {
+  @apply bg-white text-main sticky top-0 z-50;
+}
+
+.inner {
+  @apply container py-[10px] flex flex-nowrap items-center flex-1;
+}

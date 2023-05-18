@@ -14,3 +14,17 @@ query Page($slug: String!, $locale: LanguageCodeEnum!) {
     content
   }
 }
+
+query PageBanner($slug: String!) {
+  page(slug: $slug) {
+    id
+    title
+    attributes {
+      values {
+        file {
+          url
+        }
+      }
+    }
+  }
+}
