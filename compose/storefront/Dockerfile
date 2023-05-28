@@ -26,13 +26,13 @@ ARG ALLOWED_SALEOR_API_REGEX
 ENV ALLOWED_SALEOR_API_REGEX "^https:\/\/[a-z0-9\-\.]+\.titancenter\.asia\/graphql\/\$"
 
 ARG STOREFRONT_URL
-ENV STOREFRONT_URL ${STOREFRONT_URL:-https://saleor.titancenter.asia}
+ENV STOREFRONT_URL ${STOREFRONT_URL:-https://titancenter.asia}
 
 ARG CHECKOUT_APP_URL
-ENV CHECKOUT_APP_URL ${CHECKOUT_APP_URL:-https://saleor.titancenter.asia}
+ENV CHECKOUT_APP_URL ${CHECKOUT_APP_URL:-https://titancenter.asia}
 
 ARG CHECKOUT_STOREFRONT_URL
-ENV CHECKOUT_STOREFRONT_URL ${CHECKOUT_STOREFRONT_URL:-https://saleor.titancenter.asia/checkout-spa/}
+ENV CHECKOUT_STOREFRONT_URL ${CHECKOUT_STOREFRONT_URL:-https://titancenter.asia/checkout-spa/}
 
 ARG CLOUD_DEPLOYMENT_URL https://prod.demo.saleor.cloud
 ENV CLOUD_DEPLOYMENT_URL ${CLOUD_DEPLOYMENT_URL:-https://prod.demo.saleor.cloud}
