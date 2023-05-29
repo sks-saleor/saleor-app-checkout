@@ -20,7 +20,6 @@ const checkoutApiUrl = process.env["NEXT_PUBLIC_CHECKOUT_APP_URL"]
   ? urlJoin(process.env["NEXT_PUBLIC_CHECKOUT_APP_URL"], `api`)
   : "";
 const checkoutAppUrl = process.env["NEXT_PUBLIC_CHECKOUT_APP_URL"];
-const allowedSaleorApiRegex = process.env["NEXT_PUBLIC_ALLOWED_SALEOR_API_REGEX"];
 
 export default function CheckoutSpa() {
   if (!checkoutApiUrl) {
@@ -31,15 +30,6 @@ export default function CheckoutSpa() {
     console.warn(`Missing NEXT_PUBLIC_CHECKOUT_APP_URL env variable`);
     return null;
   }
-  if (!allowedSaleorApiRegex) {
-    console.warn(`Missing NEXT_PUBLIC_ALLOWED_SALEOR_API_REGEX  env variable`);
-    return null;
-  }
 
-  return (
-    <CheckoutStoreFront
-      env={{ checkoutApiUrl, checkoutAppUrl }}
-      saleorApiUrlRegex={new RegExp(allowedSaleorApiRegex)}
-    />
-  );
+  return <CheckoutStoreFront env={{ checkoutApiUrl, checkoutAppUrl }} />;
 }

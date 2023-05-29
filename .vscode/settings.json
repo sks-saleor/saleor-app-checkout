@@ -20,16 +20,7 @@
     ".github": true,
     ".vercel": true
   },
-  "search.exclude": {
-    "**/node_modules": true,
-    ".{dev,shadowenv.d}": true,
-    "{build,dist}/": true,
-    "examples/*/build": true,
-    ".next": true,
-    "**/.next": true,
-    "package-lock.json": true,
-    "pnpm-lock.yaml": true
-  },
+
   "css.validate": true,
   "editor.quickSuggestions": { "strings": true }
 }

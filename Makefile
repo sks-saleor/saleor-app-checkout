@@ -17,7 +17,7 @@ help : Makefile
 ## storefront-build:	You should build your tests to provide the highest level of code coverage.
 storefront-build:
 	@echo "storefront-build storefront image for storefront..."
-	@docker build --platform linux/x86_64 -f compose/storefront/Dockerfile -t saleor-storefront:$(STOREFRONT_VERSION) .
+	@docker build --platform linux/amd64 -f compose/storefront/Dockerfile -t saleor-storefront:$(STOREFRONT_VERSION) .
 	@echo "storefront-build add tag storefront..."
 	@docker tag saleor-storefront:$(STOREFRONT_VERSION) ghcr.io/sks-keo/saleor-storefront:$(STOREFRONT_VERSION)
 	@echo "start pushing storefront to ghcr..."

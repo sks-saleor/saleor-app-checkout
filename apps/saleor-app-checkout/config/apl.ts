@@ -5,7 +5,6 @@ import { unpackPromise } from "../utils/unpackErrors";
 import { CheckoutVercelAPL } from "./checkoutVercelApl";
 
 const getAPL = () => {
-  console.log("process.env.APL::: ", process.env.APL);
   switch (process.env.APL) {
     case "upstash":
       const UPSTASH_REDIS_REST_URL = process.env.UPSTASH_REDIS_REST_URL;
@@ -45,7 +44,6 @@ const getAPL = () => {
 
 export const get = async (saleorApiUrl: string) => {
   const authData = await apl.get(saleorApiUrl);
-  console.log("authData:::: ", authData);
   invariant(
     authData,
     `No auth data found for given host: ${saleorApiUrl}. Is the app installed and configured?`

@@ -15,24 +15,13 @@ import { useUrqlClient } from "@saleor/auth-sdk/react/urql";
 import { SaleorAuthProvider } from "@saleor/auth-sdk/react";
 import { useSaleorAuthClient } from "@saleor/auth-sdk/react";
 import { useAuthChange } from "@saleor/auth-sdk/react";
-import invariant from "ts-invariant";
 
 export interface RootProps {
   env: AppEnv;
-  saleorApiUrlRegex: RegExp;
 }
 
-export const Root = ({ env, saleorApiUrlRegex }: RootProps) => {
+export const Root = ({ env }: RootProps) => {
   const { saleorApiUrl } = getQueryParams();
-
-  invariant(
-    saleorApiUrlRegex.test(saleorApiUrl),
-    `
-Provided saleorApiUrl doesn't match allowed regex!
-Provided: ${saleorApiUrl}
-Allowed: ${String(saleorApiUrlRegex)}
-    `.trim()
-  );
 
   const { locale, messages } = useLocale();
   const useSaleorAuthClientProps = useSaleorAuthClient({

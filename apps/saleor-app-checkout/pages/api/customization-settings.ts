@@ -8,7 +8,7 @@ const handler: NextApiHandler = async (req, res) => {
   console.debug("Customization settings endpoint called");
 
   const [saleorApiUrlError, saleorApiUrl] = unpackThrowable(() => getSaleorApiUrlFromRequest(req));
-
+  console.log("customization-settings:::::");
   if (saleorApiUrlError) {
     res.status(400).json({ message: saleorApiUrlError.message });
     return;
