@@ -33,7 +33,7 @@ export const DeliveryMethods: React.FC<CommonSectionProps> = ({ collapsed }) => 
       max: max.toString(),
     });
   };
-
+  console.log("checkout::::: ", checkout?.isShippingRequired);
   if (!checkout?.isShippingRequired || collapsed) {
     return null;
   }

@@ -17,7 +17,6 @@ import {
 import { compact } from "lodash-es";
 
 const PAYMENT_PLUGIN_PREFIX = "mirumee";
-
 const paymentGatewayMap: Record<PaymentGatewayId, keyof ParsedPaymentGateways> = {
   [adyenGatewayId]: "adyen",
 };
@@ -28,7 +27,6 @@ export const getParsedPaymentGatewayConfigs = (
   if (!gatewayConfigs) {
     return {};
   }
-
   return gatewayConfigs.reduce((result, gatewayConfig) => {
     const hasError = !gatewayConfig?.data && !!gatewayConfig?.errors?.length;
 
