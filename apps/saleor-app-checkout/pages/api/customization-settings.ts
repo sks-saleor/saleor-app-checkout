@@ -13,7 +13,10 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
 
-  const settings = await getPublicSettings({ saleorApiUrl });
+  let settings = { customizations: {} };
+  try {
+    settings = await getPublicSettings({ saleorApiUrl });
+  } catch (error) {}
 
   res.status(200).json(settings.customizations);
 };

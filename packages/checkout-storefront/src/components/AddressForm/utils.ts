@@ -152,12 +152,12 @@ export const getAddressValidationRulesVariables = (
 export const addressFieldsOrder: AddressField[] = [
   "firstName",
   "lastName",
-  "companyName",
+  // "companyName",
   "streetAddress1",
-  "streetAddress2",
+  // "streetAddress2",
   "city",
   "countryCode",
-  "postalCode",
+  // "postalCode",
   "cityArea",
   "countryArea",
   "phone",
@@ -184,6 +184,5 @@ export const getFilteredAddressFields = (addressFields: ApiAddressField[]): Addr
   const filteredAddressFields = addressFields.filter(
     (addressField: ApiAddressField) => addressField !== "name"
   ) as AddressField[];
-
   return uniq([...filteredAddressFields, "firstName", "lastName", "phone"]);
 };

@@ -68,18 +68,6 @@ export default function App(props: AppProps) {
               <AppContainer>
                 <Component {...pageProps} />
               </AppContainer>
-              <footer
-                style={{
-                  fontSize: "0.8em",
-                  textAlign: "center",
-                  color: "#777",
-                  transform: "translateY(-100%)",
-                  height: "1.7rem",
-                  marginTop: "-1.7rem",
-                }}
-              >
-                <small>{version}</small>
-              </footer>
             </ThemeProvider>
           </IntlProvider>
         </PrivateSettingsProvider>
