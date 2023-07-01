@@ -13,7 +13,6 @@ import {
 } from "./messages/customization";
 import { paymentMethodsMessages } from "./messages/paymentMethods";
 import {
-  adyenPaymentProviderMessages,
   molliePaymentProviderMessages,
   paymentProvidersMessages,
   stripePaymentProviderMessages,
@@ -23,7 +22,6 @@ import CreditCardIcon from "@material-ui/icons/CreditCard";
 import AppleIcon from "@material-ui/icons/Apple";
 import PayPalIcon from "./icons/PayPal";
 import MollieIcon from "./icons/Mollie";
-import AdyenIcon from "./icons/Adyen";
 import StripeIcon from "./icons/Stripe";
 import DummyIcon from "./icons/Dummy";
 
@@ -56,39 +54,6 @@ const molliePaymentProvider: Omit<PaymentProviderSettings<"mollie">, "label">[] 
     id: "apiKey",
     type: "string",
     encrypt: true,
-  },
-];
-
-const adyenPaymentProvider: Omit<PaymentProviderSettings<"adyen">, "label">[] = [
-  {
-    id: "merchantAccount",
-    type: "string",
-    encrypt: false,
-  },
-  {
-    id: "apiKey",
-    type: "string",
-    encrypt: true,
-  },
-  {
-    id: "hmac",
-    type: "string",
-    encrypt: true,
-  },
-  {
-    id: "username",
-    type: "string",
-    encrypt: true,
-  },
-  {
-    id: "password",
-    type: "string",
-    encrypt: true,
-  },
-  {
-    id: "clientKey",
-    type: "string",
-    encrypt: false,
   },
 ];
 
@@ -161,7 +126,6 @@ const customizationsFields: Record<CustomizationID, any> = {
 };
 const paymentProviderFields: Record<PaymentProviderID, any> = {
   mollie: molliePaymentProvider,
-  adyen: adyenPaymentProvider,
   stripe: stripePaymentProvider,
   dummy: {},
 };
@@ -190,17 +154,6 @@ export const useMolliePaymentProvider = (): PaymentProvider<"mollie"> => {
   };
 };
 
-export const useAdyenPaymentProvider = (): PaymentProvider<"adyen"> => {
-  const intl = useIntl();
-
-  return {
-    id: "adyen",
-    label: intl.formatMessage(paymentProvidersMessages.adyen),
-    logo: AdyenIcon,
-    settings: withLabels(intl, adyenPaymentProviderMessages, adyenPaymentProvider),
-  };
-};
-
 export const useStripePaymentProvider = (): PaymentProvider<"stripe"> => {
   const intl = useIntl();
 
@@ -224,7 +177,6 @@ export const useDummyPaymentProvider = (): PaymentProvider<"dummy"> => {
 
 export const usePaymentProviders = (): PaymentProvider<PaymentProviderID>[] => [
   useMolliePaymentProvider(),
-  useAdyenPaymentProvider(),
   useStripePaymentProvider(),
 ];
 

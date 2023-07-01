@@ -16,7 +16,6 @@ const queryParamsMap = {
   // payment flow
   transaction: "transaction", // allows us to process started transaction
   processingPayment: "processingPayment", // tell the processing screen to show up
-  // adyen
   redirectResult: "redirectResult",
   resultCode: "resultCode",
   type: "type",

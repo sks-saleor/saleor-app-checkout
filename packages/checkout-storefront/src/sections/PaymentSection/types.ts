@@ -1,15 +1,11 @@
 import { PaymentGatewayConfig } from "@/checkout-storefront/graphql";
-import {
-  AdyenGatewayId,
-  AdyenGatewayInitializePayload,
-} from "@/checkout-storefront/sections/PaymentSection/AdyenDropIn/types";
 
-export type PaymentGatewayId = AdyenGatewayId;
+export type PaymentGatewayId = "mirumee.payments.dummy";
 
-export type ParsedAdyenGateway = ParsedPaymentGateway<AdyenGatewayInitializePayload>;
+export type ParsedDummyGateway = ParsedPaymentGateway<{}>;
 
 export type ParsedPaymentGateways = {
-  adyen?: ParsedAdyenGateway;
+  dummy?: ParsedDummyGateway;
 };
 
 export interface ParsedPaymentGateway<TData extends Record<string, any>>

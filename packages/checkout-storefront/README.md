@@ -70,7 +70,6 @@ graph LR
     H --> L(Discount Form)
     H --> M(Pricing Info)
     E --> F(Payment Gateways)
-    F --> I(Adyen Dropin)
     E --> G(Billing Address Form)
 
 ```
@@ -227,8 +226,6 @@ Used for translations. Uses react-intl under the hood.
 ### **useErrorMessages**
 
 **`useErrorMessages<TKey extends string = ErrorCode>(customMessages?: Record<TKey, MessageDescriptor>) => { errorMessages, getMessageByErrorCode,}`**
-
-Used for providing an easier way to translate error messages. Without provided customMessages prop it'll return generic error messages for `required`, `missing` etc. form fields. For e.g AdyenDropin component, we provide custom messages so we can later show translated error messages specifically for adyen without wrapping each message into `formatMessage`
 
 ### **useUrlChange**
 

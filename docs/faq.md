@@ -98,10 +98,6 @@ then follow the instruction displayed in that error message and create a `.saleo
 
 Make sure you're not using `NEXT_PUBLIC_SALEOR_API_URL` environment variable.
 
-## Adyen dropin displays "Unauthorized origin"
-
-Please add `http://localhost:3000`, `http://localhost:3001`, `http://localhost:3002` to your credentials allowed origins in Adyen Dashboard or inside [Adyen Payment App](https://github.com/saleor/saleor-app-payment-adyen)
-
 ## I get weird error messages while installing dependencies
 
 Make sure you're using the correct `pnpm` version. Check your version:

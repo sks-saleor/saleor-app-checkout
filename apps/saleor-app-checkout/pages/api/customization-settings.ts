@@ -6,15 +6,16 @@ import { unpackThrowable } from "@/saleor-app-checkout/utils/unpackErrors";
 
 const handler: NextApiHandler = async (req, res) => {
   console.debug("Customization settings endpoint called");
-
-  const [saleorApiUrlError, saleorApiUrl] = unpackThrowable(() => getSaleorApiUrlFromRequest(req));
-  if (saleorApiUrlError) {
-    res.status(400).json({ message: saleorApiUrlError.message });
-    return;
-  }
-
   let settings = { customizations: {} };
   try {
+    const [saleorApiUrlError, saleorApiUrl] = unpackThrowable(() =>
+      getSaleorApiUrlFromRequest(req)
+    );
+    if (saleorApiUrlError) {
+      res.status(400).json({ message: saleorApiUrlError.message });
+      return;
+    }
+
     settings = await getPublicSettings({ saleorApiUrl });
   } catch (error) {}
 

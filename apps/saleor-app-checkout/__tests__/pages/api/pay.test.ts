@@ -7,35 +7,26 @@ import pay from "@/saleor-app-checkout/pages/api/pay";
 import { mockRequest } from "@/saleor-app-checkout/test-utils";
 
 import { createMolliePayment } from "@/saleor-app-checkout/backend/payments/providers/mollie";
-import { createAdyenCheckoutPaymentLinks } from "@/saleor-app-checkout/backend/payments/providers/adyen";
 import { createOrder } from "@/saleor-app-checkout/backend/payments/createOrder";
 import { updatePaymentMetafield } from "@/saleor-app-checkout/backend/payments/updatePaymentMetafield";
 import {
   verifyMollieSession,
   reuseExistingMollieSession,
 } from "@/saleor-app-checkout/backend/payments/providers/mollie/verifySession";
-import {
-  verifyAdyenSession,
-  reuseExistingAdyenSession,
-} from "@/saleor-app-checkout/backend/payments/providers/adyen/verifySession";
+
 import { OrderFragment } from "@/saleor-app-checkout/graphql";
 import type { OrderStatus as MollieOrderStatus } from "@mollie/api-client";
 
 jest.mock("@/saleor-app-checkout/backend/payments/createOrder");
 jest.mock("@/saleor-app-checkout/backend/payments/providers/mollie");
-jest.mock("@/saleor-app-checkout/backend/payments/providers/adyen");
 jest.mock("@/saleor-app-checkout/backend/payments/updatePaymentMetafield");
-jest.mock("@/saleor-app-checkout/backend/payments/providers/adyen/verifySession");
 jest.mock("@/saleor-app-checkout/backend/payments/providers/mollie/verifySession");
 jest.mock("@mollie/api-client");
 jest.mock("urql");
 
 const mockedCreateOrder = <jest.Mock>createOrder;
 const mockedCreateMolliePayment = <jest.Mock>createMolliePayment;
-const mockedCreateAdyenPayment = <jest.Mock>createAdyenCheckoutPaymentLinks;
 const mockedUpdatePaymentMetafield = <jest.Mock>updatePaymentMetafield;
-const mockedVerifyAdyenSession = <jest.Mock>verifyAdyenSession;
-const mockReuseExistingAdyenSession = <jest.Mock>reuseExistingAdyenSession;
 const mockedVerifyMollieSession = <jest.Mock>verifyMollieSession;
 const mockReuseExistingMollieSession = <jest.Mock>reuseExistingMollieSession;
 
@@ -176,111 +167,5 @@ describe("/api/pay", () => {
     expect(data.ok).toBe(true);
     expect(data.provider).toBe("mollie");
     expect(data.data.paymentUrl).toBe("mollie-redirect-url");
-  });
-
-  it("accepts and processes new payment: adyen", async () => {
-    const mockOrderData = {
-      privateMetafield: JSON.stringify({
-        provider: "adyen",
-        session: "session-id-2",
-        method: "creditCard",
-      }),
-    } as OrderFragment;
-
-    mockedCreateOrder.mockResolvedValueOnce({ data: mockOrderData });
-    mockedCreateAdyenPayment.mockResolvedValueOnce({
-      url: "adyen-redirect-url",
-      id: "test-id",
-    });
-    mockedUpdatePaymentMetafield.mockResolvedValueOnce(true);
-    const { req, res } = mockRequest("POST");
-
-    req.body = {
-      checkoutId: "id",
-      provider: "adyen",
-      method: "creditCard",
-      totalAmount: 100,
-      redirectUrl: "example.com",
-      checkoutApiUrl: "http://localhost:3000",
-    } as PayRequestBody;
-
-    await pay(req, res);
-
-    expect(mockedCreateOrder).toHaveBeenCalledWith({
-      checkoutId: "id",
-      saleorApiUrl: process.env.NEXT_PUBLIC_SALEOR_API_URL,
-      totalAmount: 100,
-    });
-    expect(mockedCreateOrder).toHaveBeenCalledTimes(1);
-
-    expect(mockedCreateAdyenPayment).toHaveBeenCalledWith({
-      appUrl: "http://",
-      method: "creditCard",
-      order: {
-        privateMetafield: '{"provider":"adyen","session":"session-id-2","method":"creditCard"}',
-      },
-      redirectUrl: "example.com",
-      saleorApiUrl: process.env.NEXT_PUBLIC_SALEOR_API_URL,
-    });
-    expect(mockedCreateAdyenPayment).toHaveBeenCalledTimes(1);
-
-    const data = res._getJSONData<PayRequestSuccessResponse>();
-    expect(res.statusCode).toBe(200);
-    expect(data.ok).toBe(true);
-    expect(data.provider).toBe("adyen");
-    expect(data.data.paymentUrl).toBe("adyen-redirect-url");
-  });
-
-  it("accepts and reuses existing payment session: adyen", async () => {
-    const mockOrderData = {
-      privateMetafield: JSON.stringify({
-        provider: "adyen",
-        session: "session-id-2",
-        method: "creditCard",
-      }),
-    } as OrderFragment;
-
-    mockReuseExistingAdyenSession.mockResolvedValueOnce({
-      ok: true,
-      provider: "adyen",
-      data: { paymentUrl: "adyen-redirect-url" },
-    });
-    mockedCreateOrder.mockResolvedValueOnce({ data: mockOrderData });
-    mockedVerifyAdyenSession.mockResolvedValueOnce({
-      status: 0, // "active"
-      url: "adyen-redirect-url",
-    });
-    const { req, res } = mockRequest("POST");
-
-    req.body = {
-      checkoutId: "id",
-      provider: "adyen",
-      method: "creditCard",
-      totalAmount: 100,
-      redirectUrl: "example.com",
-      checkoutApiUrl: "http://localhost:3000",
-    } as PayRequestBody;
-
-    req.headers = {
-      host: "app.com",
-    };
-
-    await pay(req, res);
-
-    expect(mockedCreateOrder).toHaveBeenCalledWith({
-      checkoutId: "id",
-      saleorApiUrl: process.env.NEXT_PUBLIC_SALEOR_API_URL,
-      totalAmount: 100,
-    });
-    expect(mockedCreateOrder).toHaveBeenCalledTimes(1);
-    expect(mockedCreateAdyenPayment).not.toHaveBeenCalled();
-    expect(mockedUpdatePaymentMetafield).not.toHaveBeenCalled();
-
-    const data = res._getJSONData<PayRequestSuccessResponse>();
-
-    expect(res.statusCode).toBe(200);
-    expect(data.ok).toBe(true);
-    expect(data.provider).toBe("adyen");
-    expect(data.data.paymentUrl).toBe("adyen-redirect-url");
   });
 });
