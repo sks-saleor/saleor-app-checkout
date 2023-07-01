@@ -349,3 +349,18 @@ mutation checkoutComplete($checkoutId: ID!) {
     }
   }
 }
+mutation checkoutPaymentCreate($id: ID, $paymentInput: PaymentInput!) {
+  checkoutPaymentCreate(id: $id, input: $paymentInput) {
+    payment {
+      id
+      total {
+        currency
+        amount
+      }
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

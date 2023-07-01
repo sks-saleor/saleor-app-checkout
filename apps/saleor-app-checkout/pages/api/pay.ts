@@ -7,8 +7,6 @@ import {
   MissingUrlError,
   UnknownPaymentError,
 } from "@/saleor-app-checkout/backend/payments/errors";
-import { createAdyenCheckoutPaymentLinks } from "@/saleor-app-checkout/backend/payments/providers/adyen";
-import { reuseExistingAdyenSession } from "@/saleor-app-checkout/backend/payments/providers/adyen/verifySession";
 import { createDummyPayment } from "@/saleor-app-checkout/backend/payments/providers/dummy/createPayment";
 import { createMolliePayment } from "@/saleor-app-checkout/backend/payments/providers/mollie";
 import { reuseExistingMollieSession } from "@/saleor-app-checkout/backend/payments/providers/mollie/verifySession";
@@ -55,8 +53,6 @@ const reuseExistingSession = (
   switch (payment.provider) {
     case "mollie":
       return reuseExistingMollieSession(saleorApiUrl, params);
-    case "adyen":
-      return reuseExistingAdyenSession(saleorApiUrl, params);
     case "stripe":
       return reuseExistingStripeSession(saleorApiUrl, params);
     case "dummy":
@@ -210,8 +206,6 @@ const getPaymentUrlIdForProvider = ({
   switch (body.provider) {
     case "mollie":
       return createMolliePayment(createPaymentData);
-    case "adyen":
-      return createAdyenCheckoutPaymentLinks(createPaymentData);
     case "stripe":
       return createStripePayment(createPaymentData);
     case "dummy":

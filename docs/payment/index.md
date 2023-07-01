@@ -14,12 +14,6 @@ Read setup guide in [docs/payment/mollie.md](../payment/mollie.md)
 
 <br>
 
-[![Adyen](../logos/adyen.svg)](https://www.adyen.com/)
-
-Read setup guide in [docs/payment/adyen.md](../payment/adyen.md)
-
-<br>
-
 [![Stripe](./../logos/stripe_blurple.svg)](https://stripe.com/)
 
 Read setup guide in [docs/payment/stripe.md](../payment/stripe.md)

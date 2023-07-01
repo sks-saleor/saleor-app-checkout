@@ -10,20 +10,10 @@ export interface PaymentMethod {
 }
 export type MollieProviderSettingID = "profileId" | "apiKey";
 
-export const adyenProviderSettingIDs = [
-  "merchantAccount",
-  "hmac",
-  "username",
-  "password",
-  "apiKey",
-  "clientKey",
-] as const;
-export type AdyenProviderSettingID = typeof adyenProviderSettingIDs[number];
 export type StripeProviderSettingID = "publishableKey" | "secretKey" | "webhookSecret";
 
 export const PaymentProviders: readonly (keyof PaymentProviderToSettings)[] = [
   "mollie",
-  "adyen",
   "stripe",
   "dummy",
 ] as const;
@@ -31,7 +21,6 @@ export type PaymentProviderID = typeof PaymentProviders[number];
 
 export type PaymentProviderToSettings = {
   mollie: MollieProviderSettingID;
-  adyen: AdyenProviderSettingID;
   stripe: StripeProviderSettingID;
   dummy: "dummyKey";
 };

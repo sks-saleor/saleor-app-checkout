@@ -9,13 +9,6 @@ type MollieResponse = {
   };
 };
 
-type AdyenResponse = {
-  provider: "adyen";
-  data: {
-    paymentUrl: string;
-  };
-};
-
 type StripeResponse = {
   provider: "stripe";
   data: {
@@ -34,7 +27,7 @@ export type PayRequestSuccessResponse = {
   provider: PaymentProviderID;
   ok: true;
   orderId: string;
-} & (MollieResponse | AdyenResponse | StripeResponse | DummyResponse);
+} & (MollieResponse | StripeResponse | DummyResponse);
 
 export type PayRequestErrorResponse = {
   ok: false;

@@ -111,33 +111,17 @@
     "developer_comment": "payment method",
     "string": "PayPal"
   },
-  "messages/paymentProviders/+1my3D": {
-    "developer_comment": "payment provider setting",
-    "string": "Webhook HMAC key"
-  },
   "messages/paymentProviders/9hBUgM": {
     "developer_comment": "payment provider setting",
     "string": "API key"
-  },
-  "messages/paymentProviders/CH2iz9": {
-    "developer_comment": "payment provider setting",
-    "string": "Webhook password"
   },
   "messages/paymentProviders/CQH/Vb": {
     "developer_comment": "payment provider",
     "string": "Mollie"
   },
-  "messages/paymentProviders/I6I7xw": {
-    "developer_comment": "payment provider setting",
-    "string": "Webhook username"
-  },
   "messages/paymentProviders/LtD8zn": {
     "developer_comment": "dummy payment provider",
     "string": "Dummy Payment"
-  },
-  "messages/paymentProviders/WdX1+f": {
-    "developer_comment": "payment provider setting",
-    "string": "Public client key"
   },
   "messages/paymentProviders/YBcvvL": {
     "developer_comment": "payment provider setting",
@@ -155,21 +139,9 @@
     "developer_comment": "payment provider setting",
     "string": "Webhookd Secret"
   },
-  "messages/paymentProviders/m5P19o": {
-    "developer_comment": "payment provider",
-    "string": "Adyen"
-  },
-  "messages/paymentProviders/qHRtb0": {
-    "developer_comment": "payment provider setting",
-    "string": "Private API key"
-  },
   "messages/paymentProviders/t7YEMr": {
     "developer_comment": "payment provider setting",
     "string": "Profile ID"
-  },
-  "messages/paymentProviders/ufY8+j": {
-    "developer_comment": "payment provider setting",
-    "string": "Merchant account"
   },
   "misc/commonMessages/95qy1d": {
     "developer_comment": "section name",

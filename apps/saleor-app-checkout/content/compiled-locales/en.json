@@ -167,22 +167,10 @@
       "value": "PayPal"
     }
   ],
-  "messages/paymentProviders/+1my3D": [
-    {
-      "type": 0,
-      "value": "Webhook HMAC key"
-    }
-  ],
   "messages/paymentProviders/9hBUgM": [
     {
       "type": 0,
       "value": "API key"
-    }
-  ],
-  "messages/paymentProviders/CH2iz9": [
-    {
-      "type": 0,
-      "value": "Webhook password"
     }
   ],
   "messages/paymentProviders/CQH/Vb": [
@@ -191,22 +179,10 @@
       "value": "Mollie"
     }
   ],
-  "messages/paymentProviders/I6I7xw": [
-    {
-      "type": 0,
-      "value": "Webhook username"
-    }
-  ],
   "messages/paymentProviders/LtD8zn": [
     {
       "type": 0,
       "value": "Dummy Payment"
-    }
-  ],
-  "messages/paymentProviders/WdX1+f": [
-    {
-      "type": 0,
-      "value": "Public client key"
     }
   ],
   "messages/paymentProviders/YBcvvL": [
@@ -233,28 +209,10 @@
       "value": "Webhookd Secret"
     }
   ],
-  "messages/paymentProviders/m5P19o": [
-    {
-      "type": 0,
-      "value": "Adyen"
-    }
-  ],
-  "messages/paymentProviders/qHRtb0": [
-    {
-      "type": 0,
-      "value": "Private API key"
-    }
-  ],
   "messages/paymentProviders/t7YEMr": [
     {
       "type": 0,
       "value": "Profile ID"
-    }
-  ],
-  "messages/paymentProviders/ufY8+j": [
-    {
-      "type": 0,
-      "value": "Merchant account"
     }
   ],
   "misc/commonMessages/95qy1d": [

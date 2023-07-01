@@ -5,12 +5,10 @@ import {
 } from "@/saleor-app-checkout/graphql";
 import { TransactionReversal } from "@/saleor-app-checkout/types/refunds";
 import { handleMolieRefund } from "@/saleor-app-checkout/backend/payments/providers/mollie";
-import { handleAdyenRefund } from "@/saleor-app-checkout/backend/payments/providers/adyen";
 import { Response } from "retes/response";
 import { getTransactionProcessedEvents } from "@/saleor-app-checkout/backend/payments/getTransactionProcessedEvents";
 import { updateTransactionProcessedEvents } from "@/saleor-app-checkout/backend/payments/updateTransactionProcessedEvents";
 import {
-  isAdyenTransaction,
   isDummyTransaction,
   isMollieTransaction,
 } from "@/saleor-app-checkout/backend/payments/utils";
@@ -84,9 +82,6 @@ const handler: NextWebhookApiHandler<TransactionActionPayloadFragment> = async (
       if (isMollieTransaction(transaction)) {
         await handleMolieRefund({ saleorApiUrl, refund: transactionReversal, transaction });
       }
-      if (isAdyenTransaction(transaction)) {
-        await handleAdyenRefund({ saleorApiUrl, refund: transactionReversal, transaction });
-      }
       if (isDummyTransaction(transaction)) {
         await handleDummyRefund({
           saleorApiUrl,
@@ -102,9 +97,6 @@ const handler: NextWebhookApiHandler<TransactionActionPayloadFragment> = async (
     if (action.actionType === "VOID") {
       if (isMollieTransaction(transaction)) {
         // TODO: Handle Mollie void payment
-      }
-      if (isAdyenTransaction(transaction)) {
-        // TODO: Handle Adyen void payment
       }
     }
   } catch (err) {

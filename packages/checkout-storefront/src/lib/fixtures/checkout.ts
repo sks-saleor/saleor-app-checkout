@@ -81,13 +81,6 @@ export const checkout: CheckoutFragment = {
       currencies: ["EUR"],
       config: [],
     },
-    {
-      id: "mirumee.payments.adyen",
-      name: "Adyen",
-      __typename: "PaymentGateway",
-      currencies: ["EUR"],
-      config: [],
-    },
   ],
   deliveryMethod: {
     id: "U2hpcHBpbmdNZXRob2Q6MjIyNQ==",

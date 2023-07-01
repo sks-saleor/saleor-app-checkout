@@ -8,7 +8,7 @@ interface CountrySelectProps {
   only?: CountryCode[];
 }
 
-export const CountrySelect: React.FC<CountrySelectProps> = ({ only = [] }) => {
+export const CountrySelect: React.FC<CountrySelectProps> = ({ only = ["KH"] }) => {
   const getCountryName = createGetCountryNames();
 
   const countriesToMap = only.length ? only : allCountries;

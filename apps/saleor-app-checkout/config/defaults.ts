@@ -19,14 +19,6 @@ export const defaultPaymentProviderSettings: PaymentProviderSettingsValues<"unen
     apiKey: "",
     profileId: "",
   },
-  adyen: {
-    merchantAccount: "",
-    clientKey: "",
-    apiKey: "",
-    hmac: "",
-    password: "",
-    username: "",
-  },
   stripe: {
     publishableKey: "",
     secretKey: "",

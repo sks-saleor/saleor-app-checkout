@@ -258,11 +258,6 @@ describe("/utils/frontend/misc/mergeSettingsValues", () => {
 
   it("merges sample payment provider values", () => {
     const defaultSettings = {
-      adyen: {
-        clientKey: "",
-        merchantAccount: "",
-        supportedCurrencies: "",
-      },
       mollie: {
         partnerId: "",
         liveApiKey: "",
@@ -270,20 +265,6 @@ describe("/utils/frontend/misc/mergeSettingsValues", () => {
       },
     };
     const savedSettings = {
-      adyen: {
-        clientKey: {
-          encrypted: true,
-          value: "U2FsdGVkX1/DpBetYEcOpf55fq9JoAa/fTUFzTq8zgh5IqTErE4YL8j1VD4KPBUN",
-        },
-        merchantAccount: {
-          encrypted: true,
-          value: "U2FsdGVkX182nG081Vfy9CdwO+ZDM2pgPCQuQ2foyPwWmh21JWaI33Gz5Fp5q+18",
-        },
-        supportedCurrencies: {
-          encrypted: false,
-          value: "USD,EUR",
-        },
-      },
       mollie: {
         partnerId: {
           encrypted: false,
@@ -303,11 +284,6 @@ describe("/utils/frontend/misc/mergeSettingsValues", () => {
     const mergedSettings = mergePrivateSettingsValues(defaultSettings, savedSettings, false);
 
     const expectedSettings = {
-      adyen: {
-        clientKey: "adyen_unencrypted_key",
-        merchantAccount: "adyen_unencrypted_value",
-        supportedCurrencies: "USD,EUR",
-      },
       mollie: {
         partnerId: "",
         liveApiKey: "",

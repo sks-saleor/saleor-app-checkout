@@ -28,10 +28,10 @@ export interface AddressFormProps {
 export const AddressForm: FC<PropsWithChildren<AddressFormProps>> = ({
   title,
   children,
-  availableCountries,
   fieldProps = {},
 }) => {
   const { values, setValues, dirty } = useFormContext<AddressFormData>();
+
   const isValidPhoneNumber = usePhoneNumberValidator(values.countryCode);
   const previousValues = useRef(values);
 
@@ -82,7 +82,6 @@ export const AddressForm: FC<PropsWithChildren<AddressFormProps>> = ({
     <>
       <div className="flex flex-row justify-between items-baseline mb-3">
         <Title className="flex-1">{title}</Title>
-        <CountrySelect only={availableCountries} />
       </div>
       <div className="mt-2">
         {orderedAddressFields.map((field) => {

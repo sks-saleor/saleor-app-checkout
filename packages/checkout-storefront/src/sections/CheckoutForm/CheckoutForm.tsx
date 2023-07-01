@@ -17,6 +17,7 @@ import {
 } from "@/checkout-storefront/sections/PaymentSection";
 import { GuestBillingAddressSection } from "@/checkout-storefront/sections/GuestBillingAddressSection";
 import { useUser } from "@/checkout-storefront/hooks/useUser";
+import { CashPayment } from "../PaymentSection/CashPayment";
 
 export const CheckoutForm = () => {
   const { user } = useUser();
@@ -49,6 +50,7 @@ export const CheckoutForm = () => {
             <CollapseSection collapse={showOnlyContact}>
               <PaymentSection>
                 {user ? <UserBillingAddressSection /> : <GuestBillingAddressSection />}
+                <CashPayment checkout={checkout} />
               </PaymentSection>
             </CollapseSection>
           </Suspense>

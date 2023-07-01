@@ -4,7 +4,6 @@ import {
   TransactionItem,
 } from "@/saleor-app-checkout/graphql";
 import currency from "currency.js";
-import { ADYEN_PAYMENT_PREFIX } from "./providers/adyen";
 import { DUMMY_PAYMENT_TYPE } from "./providers/dummy/refunds";
 import { MOLLIE_PAYMENT_PREFIX } from "./providers/mollie";
 
@@ -95,10 +94,6 @@ type TransactionWithType = Pick<TransactionItem, "type">;
 
 export const isMollieTransaction = (transaction: TransactionWithType) => {
   return transaction.type.includes(MOLLIE_PAYMENT_PREFIX);
-};
-
-export const isAdyenTransaction = (transaction: TransactionWithType) => {
-  return transaction.type.includes(ADYEN_PAYMENT_PREFIX);
 };
 
 export const isDummyTransaction = (transaction: TransactionWithType) => {

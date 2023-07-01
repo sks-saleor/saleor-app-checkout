@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y jq
 
 COPY . .
 
+RUN rm -rf apps/saleor-app-checkout
+
 # Remove Cypress from dependencies
 RUN jq 'del(.devDependencies.cypress)' package.json > _.json && mv _.json package.json
 RUN pnpm install 
@@ -26,10 +28,10 @@ ARG STOREFRONT_URL
 ENV STOREFRONT_URL ${STOREFRONT_URL:-https://titancenter.asia}
 
 ARG CHECKOUT_APP_URL
-ENV CHECKOUT_APP_URL ${CHECKOUT_APP_URL:-http://titancenter.asia:3001}
+ENV CHECKOUT_APP_URL ${CHECKOUT_APP_URL:-https://sks-checkout.vercel.app}
 
 ARG CHECKOUT_STOREFRONT_URL
-ENV CHECKOUT_STOREFRONT_URL ${CHECKOUT_STOREFRONT_URL:-http://titancenter.asia:3001/checkout-spa}
+ENV CHECKOUT_STOREFRONT_URL ${CHECKOUT_STOREFRONT_URL:-https://sks-checkout.vercel.app/checkout-spa}
 
 ARG CLOUD_DEPLOYMENT_URL https://prod.demo.saleor.cloud
 ENV CLOUD_DEPLOYMENT_URL ${CLOUD_DEPLOYMENT_URL:-https://prod.demo.saleor.cloud}

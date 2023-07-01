@@ -155,10 +155,6 @@
     "developer_comment": "payment provider setting",
     "string": "Webhookd secreto"
   },
-  "messages/paymentProviders/m5P19o": {
-    "developer_comment": "payment provider",
-    "string": "Adyen"
-  },
   "messages/paymentProviders/qHRtb0": {
     "developer_comment": "payment provider setting",
     "string": "Clave API privada"

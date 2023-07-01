@@ -16,20 +16,6 @@ export const paymentProviders: PaymentProviderSettingsValues<"encrypted"> = {
       value: testingVars.mollieProfileId,
     },
   },
-  adyen: {
-    merchantAccount: {
-      encrypted: false,
-      value: testingVars.adyenMerchantAccount,
-    },
-    clientKey: {
-      encrypted: false,
-      value: testingVars.adyenClientKey,
-    },
-    apiKey: encryptSetting(testingVars.adyenApiKey),
-    hmac: encryptSetting(testingVars.adyenHmac),
-    password: encryptSetting(testingVars.adyenWebhookPassword),
-    username: encryptSetting(testingVars.adyenWebhookUsername),
-  },
   stripe: {
     secretKey: encryptSetting(testingVars.stripeSecretKey),
     webhookSecret: encryptSetting(testingVars.stripeWebhookSecret),
@@ -91,36 +77,12 @@ export const prepareSaleorTransaction = (
 };
 
 export const transactionActionRequest: Record<
-  "missingData" | "adyenRefund" | "mollieRefund",
+  "missingData" | "mollieRefund",
   Partial<TransactionActionPayloadFragment>
 > = {
   missingData: {
     transaction: undefined,
     action: undefined,
-  },
-  adyenRefund: {
-    transaction: {
-      id: "VHJhbnNhY3Rpb25JdGVtOjE3OA==",
-      reference: "LD65H2FVNXSKGK82",
-      type: "adyen-mc",
-      authorizedAmount: {
-        amount: 0,
-        currency: "USD",
-      },
-      chargedAmount: {
-        amount: 42.92,
-      },
-      voidedAmount: {
-        amount: 0,
-      },
-      refundedAmount: {
-        amount: 0,
-      },
-    },
-    action: {
-      actionType: "REFUND",
-      amount: 4.31,
-    },
   },
   mollieRefund: {
     transaction: {

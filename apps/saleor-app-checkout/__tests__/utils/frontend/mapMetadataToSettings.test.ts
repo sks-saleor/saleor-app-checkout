@@ -43,7 +43,6 @@ describe("/utils/frontend/misc/mapMetadataToSettings", () => {
     const expectedSettings = {
       ...defaultPrivateSettings,
       paymentProviders: {
-        adyen: {},
         mollie: {
           partnerId: "some_not_encrypted_id",
           liveApiKey: "some_decrypted_key",
@@ -67,7 +66,6 @@ describe("/utils/frontend/misc/mapMetadataToSettings", () => {
     const expectedSettings = {
       ...defaultPrivateSettings,
       paymentProviders: {
-        adyen: {},
         mollie: {
           partnerId: "some_not_encrypted_id",
           liveApiKey: "•••• _key",

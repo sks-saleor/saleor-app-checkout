@@ -12,9 +12,8 @@ export const getParsedLocaleData = (
   locale: Locale
 ): { locale: Locale; countryCode: CountryCode; languageCode: LanguageCodeEnum } => {
   const [languageCode, countryCode] = locale?.split("-");
-
   return {
-    countryCode: countryCode as CountryCode,
+    countryCode: "KH" as CountryCode, // countryCode as Cambodian only,
     locale,
     languageCode: languageCode as LanguageCodeEnum,
   };
