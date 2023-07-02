@@ -7,12 +7,14 @@ export type ParamBasicValue = MightNotExist<string>;
 
 const queryParamsMap = {
   locale: "locale",
+  refreshToken: "refreshToken",
   redirectUrl: "redirectUrl",
   checkout: "checkoutId",
   order: "orderId",
   token: "passwordResetToken",
   email: "passwordResetEmail",
   saleorApiUrl: "saleorApiUrl",
+  nativeApp: "nativeApp",
   // payment flow
   transaction: "transaction", // allows us to process started transaction
   processingPayment: "processingPayment", // tell the processing screen to show up

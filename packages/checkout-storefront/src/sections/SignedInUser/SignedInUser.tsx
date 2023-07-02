@@ -2,11 +2,8 @@ import { useFormattedMessages } from "@/checkout-storefront/hooks/useFormattedMe
 import React from "react";
 import { SignInFormContainer, SignInFormContainerProps } from "../Contact/SignInFormContainer";
 import { Text } from "@saleor/ui-kit";
-import { Button } from "@/checkout-storefront/components/Button";
-import { useCheckout } from "@/checkout-storefront/hooks/useCheckout";
-import { contactLabels, contactMessages } from "../Contact/messages";
+import { contactMessages } from "../Contact/messages";
 import { useUser } from "@/checkout-storefront/hooks/useUser";
-import { useSaleorAuthContext } from "@saleor/auth-sdk";
 
 interface SignedInUserProps extends Pick<SignInFormContainerProps, "onSectionChange"> {
   onSignOutSuccess: () => void;
@@ -17,15 +14,7 @@ export const SignedInUser: React.FC<SignedInUserProps> = ({
   onSignOutSuccess,
 }) => {
   const formatMessage = useFormattedMessages();
-  const { checkoutSignOut } = useSaleorAuthContext();
-
-  const { checkout } = useCheckout();
   const { user } = useUser();
-
-  const handleLogout = async () => {
-    await checkoutSignOut({ checkoutId: checkout.id });
-    onSignOutSuccess();
-  };
 
   return (
     <SignInFormContainer
@@ -36,12 +25,6 @@ export const SignedInUser: React.FC<SignedInUserProps> = ({
         <Text weight="bold" size="md">
           {user?.email}
         </Text>
-        <Button
-          ariaLabel={formatMessage(contactLabels.signOut)}
-          variant="tertiary"
-          onClick={handleLogout}
-          label={formatMessage(contactMessages.signOut)}
-        />
       </div>
     </SignInFormContainer>
   );

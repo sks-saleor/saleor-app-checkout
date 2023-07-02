@@ -49,7 +49,7 @@ export const Summary: FC<SummaryProps> = ({
   const [isOpen, setOpen] = useState(true);
 
   const { maxSummaryHeight, allItemsHeight } = useSummaryHeightCalc({
-    linesCount: lines.length,
+    linesCount: lines?.length ?? 0,
     onBreakpointChange: (breakpoint: "lg" | "md") => {
       setOpen(breakpoint === "lg");
     },

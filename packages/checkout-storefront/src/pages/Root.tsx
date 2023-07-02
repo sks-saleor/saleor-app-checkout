@@ -11,17 +11,18 @@ import { RootViews } from "../views/RootViews";
 import { useLocale } from "../hooks/useLocale";
 import { DEFAULT_LOCALE } from "../lib/regions";
 import { getQueryParams } from "../lib/utils/url";
-import { useUrqlClient } from "@saleor/auth-sdk";
-import { SaleorAuthProvider } from "@saleor/auth-sdk";
-import { useSaleorAuthClient } from "@saleor/auth-sdk";
-import { useAuthChange } from "@saleor/auth-sdk";
+import { useUrqlClient } from "@saleor/auth-sdk/react/urql";
+import { SaleorAuthProvider } from "@saleor/auth-sdk/react";
+import { useSaleorAuthClient } from "@saleor/auth-sdk/react";
+import { useAuthChange } from "@saleor/auth-sdk/react";
+import { useEffect } from "react";
 
 export interface RootProps {
   env: AppEnv;
 }
 
 export const Root = ({ env }: RootProps) => {
-  const { saleorApiUrl } = getQueryParams();
+  const { saleorApiUrl, refreshToken } = getQueryParams();
 
   const { locale, messages } = useLocale();
   const useSaleorAuthClientProps = useSaleorAuthClient({
@@ -57,6 +58,16 @@ export const Root = ({ env }: RootProps) => {
     console.warn(`Couldn't create URQL client!`);
     return null;
   }
+
+  useEffect(() => {
+    // hack for react-native app
+    if (refreshToken) {
+      // @ts-ignore
+      saleorAuthClient.storageHandler.setRefreshToken(refreshToken);
+      // @ts-ignore
+      saleorAuthClient.storageHandler?.setAuthState("signedIn");
+    }
+  }, [refreshToken]);
 
   return (
     <IntlProvider defaultLocale={DEFAULT_LOCALE} locale={locale} messages={messages}>
