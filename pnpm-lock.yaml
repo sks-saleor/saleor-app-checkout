@@ -327,8 +327,8 @@ importers:
         specifier: 1.0.6
         version: 1.0.6(react@18.2.0)
       '@saleor/auth-sdk':
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: github:sks-saleor/auth-sdk#rw-1.0.5
+        version: github.com/sks-saleor/auth-sdk/eaf98ac095c51d7f440fb909e7724c5bb3ce0e9b(@apollo/client@3.7.14)(next@13.0.4)(react-dom@18.2.0)(react@18.2.0)
       '@saleor/ui-kit':
         specifier: workspace:*
         version: link:../../packages/ui-kit
@@ -542,8 +542,8 @@ importers:
         specifier: 3.6.2
         version: 3.6.2(react@18.2.0)
       '@saleor/auth-sdk':
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: github:sks-saleor/auth-sdk#rw-1.0.5
+        version: github.com/sks-saleor/auth-sdk/eaf98ac095c51d7f440fb909e7724c5bb3ce0e9b(next@13.0.4)(react-dom@18.2.0)(react@18.2.0)(urql@4.0.2)
       '@saleor/ui-kit':
         specifier: workspace:*
         version: link:../ui-kit
@@ -907,18 +907,6 @@ packages:
     dependencies:
       graphql: 15.8.0
     dev: false
-
-  /@0no-co/graphql.web@1.0.1(graphql@16.6.0):
-    resolution: {integrity: sha512-6Yaxyv6rOwRkLIvFaL0NrLDgfNqC/Ng9QOPmTmlqW4mORXMEKmh5NYGkIvvt5Yw8fZesnMAqkj8cIqTj8f40cQ==}
-    peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
-    peerDependenciesMeta:
-      graphql:
-        optional: true
-    dependencies:
-      graphql: 16.6.0
-    dev: false
-    optional: true
 
   /@adobe/css-tools@4.2.0:
     resolution: {integrity: sha512-E09FiIft46CmH5Qnjb0wsW54/YQd69LsxeKUOWawmws1XWvyFGURnAChH0mlr7YPFR1ofwvUQfcL0J3lMxXqPA==}
@@ -5846,21 +5834,6 @@ packages:
       - supports-color
     dev: false
 
-  /@saleor/auth-sdk@0.6.0:
-    resolution: {integrity: sha512-wUQiHoKeVsaFZUAz8JgT0RalIlx44ys0dYuievOrom0DrpnBuPABwFuv7FssYlsosNtpfzHov65ofTxGZDLPpA==}
-    dependencies:
-      graphql: 16.6.0
-      graphql-tag: 2.12.6(graphql@16.6.0)
-    optionalDependencies:
-      '@apollo/client': 3.7.14(graphql@16.6.0)(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      urql: 4.0.2(graphql@16.6.0)(react@18.2.0)
-    transitivePeerDependencies:
-      - graphql-ws
-      - subscriptions-transport-ws
-    dev: false
-
   /@saleor/macaw-ui@0.6.7(@material-ui/core@4.12.4)(@material-ui/icons@4.11.3)(@material-ui/lab@4.0.0-alpha.61)(@types/react@18.0.23)(react-dom@18.2.0)(react-helmet@6.1.0)(react@18.2.0):
     resolution: {integrity: sha512-HRa8c4M+siOltopPLDusRh/03P7G2FlboFszal5sd2X8HUNZJ4c2BS83gnBMmVgp37kxeZiBVe95Fhjm0PRzbA==}
     engines: {node: '>=10'}
@@ -7307,27 +7280,6 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/typescript-estree@5.59.5(typescript@4.9.5):
-    resolution: {integrity: sha512-+XXdLN2CZLZcD/mO7mQtJMvCkzRfmODbeSKuMY/yXbGkzvA9rJyDY5qDYNoiz2kP/dmyAxXquL2BvLQLJFPQIg==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/types': 5.59.5
-      '@typescript-eslint/visitor-keys': 5.59.5
-      debug: 4.3.4(supports-color@8.1.1)
-      globby: 11.1.0
-      is-glob: 4.0.3
-      semver: 7.5.0
-      tsutils: 3.21.0(typescript@4.9.5)
-      typescript: 4.9.5
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@typescript-eslint/utils@5.41.0(eslint@8.26.0)(typescript@5.0.4):
     resolution: {integrity: sha512-QlvfwaN9jaMga9EBazQ+5DDx/4sAdqDkcs05AsQHMaopluVCUyu1bTRUVKzXbgjDlrRAQrYVoi/sXJ9fmG+KLQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -7401,16 +7353,6 @@ packages:
     transitivePeerDependencies:
       - graphql
     dev: false
-
-  /@urql/core@4.0.7(graphql@16.6.0):
-    resolution: {integrity: sha512-UtZ9oSbSFODXzFydgLCXpAQz26KGT1d6uEfcylKphiRWNXSWZi8k7vhJXNceNm/Dn0MiZ+kaaJHKcnGY1jvHRQ==}
-    dependencies:
-      '@0no-co/graphql.web': 1.0.1(graphql@16.6.0)
-      wonka: 6.3.2
-    transitivePeerDependencies:
-      - graphql
-    dev: false
-    optional: true
 
   /@urql/exchange-auth@1.0.0(graphql@16.6.0):
     resolution: {integrity: sha512-79hqPQab+ifeINOxvQykvqub4ixWHBEIagN4U67ijcHGMfp3c4yEWRk4IJMPwF+OMT7LrRFuv+jRIZTQn/9VwQ==}
@@ -9099,7 +9041,6 @@ packages:
   /cookie@0.5.0:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
-    dev: true
 
   /copy-to-clipboard@3.3.3:
     resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==}
@@ -10594,12 +10535,12 @@ packages:
       '@formatjs/ts-transformer': 3.11.1(ts-jest@27.1.4)
       '@types/eslint': 8.37.0
       '@types/picomatch': 2.3.0
-      '@typescript-eslint/typescript-estree': 5.59.5(typescript@4.9.5)
+      '@typescript-eslint/typescript-estree': 5.59.5(typescript@4.8.4)
       emoji-regex: 10.2.1
       eslint: 8.26.0
       picomatch: 2.3.1
       tslib: 2.4.0
-      typescript: 4.9.5
+      typescript: 4.8.4
     transitivePeerDependencies:
       - supports-color
       - ts-jest
@@ -19287,16 +19228,6 @@ packages:
       typescript: 4.8.4
     dev: true
 
-  /tsutils@3.21.0(typescript@4.9.5):
-    resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
-    engines: {node: '>= 6'}
-    peerDependencies:
-      typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
-    dependencies:
-      tslib: 1.14.1
-      typescript: 4.9.5
-    dev: true
-
   /tsutils@3.21.0(typescript@5.0.4):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
@@ -19470,12 +19401,6 @@ packages:
     resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-
-  /typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
-    dev: true
 
   /typescript@5.0.4:
     resolution: {integrity: sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==}
@@ -19670,19 +19595,6 @@ packages:
     transitivePeerDependencies:
       - graphql
     dev: false
-
-  /urql@4.0.2(graphql@16.6.0)(react@18.2.0):
-    resolution: {integrity: sha512-jMb71UGtoAHI4A0TO15ZUSG8qvUxC5fBTXmUq/DyE3WWcnJkZbnMCBlcZIzMrXK4txAMIHE718jsaUujRkdlkg==}
-    peerDependencies:
-      react: '>= 16.8.0'
-    dependencies:
-      '@urql/core': 4.0.7(graphql@16.6.0)
-      react: 18.2.0
-      wonka: 6.3.2
-    transitivePeerDependencies:
-      - graphql
-    dev: false
-    optional: true
 
   /use-isomorphic-layout-effect@1.1.2(@types/react@18.0.23)(react@18.2.0):
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
@@ -20538,4 +20450,68 @@ packages:
     dependencies:
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  github.com/sks-saleor/auth-sdk/eaf98ac095c51d7f440fb909e7724c5bb3ce0e9b(@apollo/client@3.7.14)(next@13.0.4)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {tarball: https://codeload.github.com/sks-saleor/auth-sdk/tar.gz/eaf98ac095c51d7f440fb909e7724c5bb3ce0e9b}
+    id: github.com/sks-saleor/auth-sdk/eaf98ac095c51d7f440fb909e7724c5bb3ce0e9b
+    name: '@saleor/auth-sdk'
+    version: 0.9.0
+    peerDependencies:
+      '@apollo/client': ^3.7.15
+      next: ^13.4.4
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      urql: ^4.0.3
+    peerDependenciesMeta:
+      '@apollo/client':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      urql:
+        optional: true
+    dependencies:
+      '@apollo/client': 3.7.14(graphql@16.6.0)(react-dom@18.2.0)(react@18.2.0)
+      cookie: 0.5.0
+      graphql: 16.6.0
+      graphql-tag: 2.12.6(graphql@16.6.0)
+      next: 13.0.4(@babel/core@7.19.6)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  github.com/sks-saleor/auth-sdk/eaf98ac095c51d7f440fb909e7724c5bb3ce0e9b(next@13.0.4)(react-dom@18.2.0)(react@18.2.0)(urql@4.0.2):
+    resolution: {tarball: https://codeload.github.com/sks-saleor/auth-sdk/tar.gz/eaf98ac095c51d7f440fb909e7724c5bb3ce0e9b}
+    id: github.com/sks-saleor/auth-sdk/eaf98ac095c51d7f440fb909e7724c5bb3ce0e9b
+    name: '@saleor/auth-sdk'
+    version: 0.9.0
+    peerDependencies:
+      '@apollo/client': ^3.7.15
+      next: ^13.4.4
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      urql: ^4.0.3
+    peerDependenciesMeta:
+      '@apollo/client':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      urql:
+        optional: true
+    dependencies:
+      cookie: 0.5.0
+      graphql: 16.6.0
+      graphql-tag: 2.12.6(graphql@16.6.0)
+      next: 13.0.4(@babel/core@7.19.6)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      urql: 4.0.2(graphql@15.8.0)(react@18.2.0)
     dev: false

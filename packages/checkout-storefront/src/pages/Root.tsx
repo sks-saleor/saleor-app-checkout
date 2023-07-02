@@ -11,10 +11,10 @@ import { RootViews } from "../views/RootViews";
 import { useLocale } from "../hooks/useLocale";
 import { DEFAULT_LOCALE } from "../lib/regions";
 import { getQueryParams } from "../lib/utils/url";
-import { useUrqlClient } from "@saleor/auth-sdk/react/urql";
-import { SaleorAuthProvider } from "@saleor/auth-sdk/react";
-import { useSaleorAuthClient } from "@saleor/auth-sdk/react";
-import { useAuthChange } from "@saleor/auth-sdk/react";
+import { useUrqlClient } from "@saleor/auth-sdk";
+import { SaleorAuthProvider } from "@saleor/auth-sdk";
+import { useSaleorAuthClient } from "@saleor/auth-sdk";
+import { useAuthChange } from "@saleor/auth-sdk";
 
 export interface RootProps {
   env: AppEnv;
