@@ -45,9 +45,8 @@ export function Footer({ className, ...rest }: FooterProps) {
                 </a>
               </Link>
               <h5 className="text-[15px] font-bold leading-[17px] mt-4">
-                Got Questions? Call us 24/7!
+                Tan Brothers Auto Co., Ltd.
               </h5>
-              <h1 className="text-[30px] font-bold text-[#1D87AD] mt-4">(855) 222 222</h1>
             </div>
             <div className="grid grid-cols-2 gap-[2rem] w-full sm:w-auto sm:flex sm:flex-wrap sm:justify-end sm:ml-auto">
               {menu.map((item) => (
