@@ -14,7 +14,7 @@ import typePolicies from "@/lib/auth/typePolicies";
 import { API_URI, DEMO_MODE } from "@/lib/const";
 import { CheckoutProvider } from "@/lib/providers/CheckoutProvider";
 import { SaleorAuthProvider, useAuthChange, useSaleorAuthClient } from "@saleor/auth-sdk/react";
-import { useAuthenticatedApolloClient } from "@saleor/auth-sdk/react/apollo";
+import { useAuthenticatedApolloClient } from "@/lib/hooks/useAuthenticatedApolloClient";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;

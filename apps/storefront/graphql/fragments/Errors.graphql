@@ -1,0 +1,6 @@
+fragment AccountError on AccountError {
+  code
+  field
+  addressType
+  message
+}

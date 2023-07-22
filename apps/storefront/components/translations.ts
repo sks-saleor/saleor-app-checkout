@@ -335,8 +335,8 @@ export const messages = defineMessages({
   },
   newPasswordRepeatedFieldLabel: {
     id: "app.preferences.changePassword.header",
-    description: "Repeated new password field label",
-    defaultMessage: "Repeat new password",
+    description: "Change your password field label",
+    defaultMessage: "Change your password",
   },
   noAddressDataMessage: {
     id: "app.preferences.addressbook.noData",

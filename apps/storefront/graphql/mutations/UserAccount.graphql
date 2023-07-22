@@ -1,0 +1,20 @@
+mutation UserAccountUpdate($input: AccountInput!) {
+  accountUpdate(input: $input) {
+    errors {
+      ...AccountError
+    }
+  }
+}
+mutation UserAvatarUpdate($image: Upload!) {
+  userAvatarUpdate(image: $image) {
+    errors {
+      ...AccountError
+    }
+    user {
+      id
+      avatar {
+        url
+      }
+    }
+  }
+}

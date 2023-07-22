@@ -11433,6 +11433,7 @@ export type MutationPageUpdateArgs = {
 };
 
 export type MutationPasswordChangeArgs = {
+  customerId?: InputMaybe<Scalars["ID"]>;
   newPassword: Scalars["String"];
   oldPassword?: InputMaybe<Scalars["String"]>;
 };
@@ -19010,6 +19011,8 @@ export type Query = {
    * Requires one of the following permissions: MANAGE_PRODUCTS.
    */
   stocks?: Maybe<StockCountableConnection>;
+  /** List of the shop's stores. */
+  stores?: Maybe<UserCountableConnection>;
   /**
    * Look up a tax class.
    *
@@ -19539,6 +19542,15 @@ export type QueryStocksArgs = {
   filter?: InputMaybe<StockFilterInput>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+};
+
+export type QueryStoresArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  filter?: InputMaybe<CustomerFilterInput>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  sortBy?: InputMaybe<UserSortingInput>;
 };
 
 export type QueryTaxClassArgs = {

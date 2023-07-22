@@ -12,10 +12,10 @@ export type AccountLayoutProps = { children: ReactNode };
 export function AccountLayout({ children }: AccountLayoutProps) {
   const router = useRouter();
   const paths = usePaths();
-  const { authenticated } = useUser();
+  const { authenticated, loading } = useUser();
   const { isAuthenticating } = useSaleorAuthContext();
 
-  if (isAuthenticating) {
+  if (isAuthenticating || loading) {
     return (
       <Layout>
         <Spinner />

@@ -191,12 +191,6 @@
       "value": "Publishable Key"
     }
   ],
-  "messages/paymentProviders/ehp06H": [
-    {
-      "type": 0,
-      "value": "Stripe"
-    }
-  ],
   "messages/paymentProviders/fQ20+Q": [
     {
       "type": 0,

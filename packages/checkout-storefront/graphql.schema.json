@@ -50608,6 +50608,18 @@
             "description": "Change the password of the logged in user. \n\nRequires one of the following permissions: AUTHENTICATED_USER.",
             "args": [
               {
+                "name": "customerId",
+                "description": "ID of a customer to change the password for.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
                 "name": "newPassword",
                 "description": "New user password.",
                 "type": {
@@ -92172,6 +92184,91 @@
             "type": {
               "kind": "OBJECT",
               "name": "StockCountableConnection",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stores",
+            "description": "List of the shop's stores.",
+            "args": [
+              {
+                "name": "after",
+                "description": "Return the elements in the list that come after the specified cursor.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "before",
+                "description": "Return the elements in the list that come before the specified cursor.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "filter",
+                "description": "Filtering options for stores.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CustomerFilterInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "first",
+                "description": "Retrieve the first n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "last",
+                "description": "Retrieve the last n elements from the list. Note that the system only allows fetching a maximum of 100 objects in a single query.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "sortBy",
+                "description": "Sort stores.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UserSortingInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UserCountableConnection",
               "ofType": null
             },
             "isDeprecated": false,

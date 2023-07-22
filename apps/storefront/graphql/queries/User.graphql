@@ -2,6 +2,12 @@ query User {
   user: me {
     id
     email
+    firstName
+    lastName
+    isStaff
+    avatar {
+      url
+    }
     addresses {
       ...AddressDetailsFragment
     }

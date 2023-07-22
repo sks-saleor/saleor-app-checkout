@@ -172,9 +172,6 @@ importers:
       retes:
         specifier: 0.34.0
         version: 0.34.0
-      stripe:
-        specifier: 10.15.0
-        version: 10.15.0
       ts-invariant:
         specifier: 0.10.3
         version: 0.10.3
@@ -332,12 +329,6 @@ importers:
       '@saleor/ui-kit':
         specifier: workspace:*
         version: link:../../packages/ui-kit
-      '@stripe/react-stripe-js':
-        specifier: 1.14.0
-        version: 1.14.0(@stripe/stripe-js@1.42.0)(react-dom@18.2.0)(react@18.2.0)
-      '@stripe/stripe-js':
-        specifier: 1.42.0
-        version: 1.42.0
       '@tailwindcss/aspect-ratio':
         specifier: 0.4.2
         version: 0.4.2(tailwindcss@3.2.1)
@@ -347,6 +338,9 @@ importers:
       '@tailwindcss/typography':
         specifier: 0.5.7
         version: 0.5.7(tailwindcss@3.2.1)
+      apollo-upload-client:
+        specifier: ^17.0.0
+        version: 17.0.0(@apollo/client@3.7.14)(graphql@16.6.0)
       clsx:
         specifier: 1.2.1
         version: 1.2.1
@@ -380,6 +374,9 @@ importers:
       nextjs-progressbar:
         specifier: 0.0.16
         version: 0.0.16(next@13.0.4)(react@18.2.0)
+      query-string:
+        specifier: 7.1.1
+        version: 7.1.1
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -432,6 +429,9 @@ importers:
       '@svgr/webpack':
         specifier: 6.5.0
         version: 6.5.0
+      '@types/apollo-upload-client':
+        specifier: ^17.0.2
+        version: 17.0.2(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
         specifier: 16.11.22
         version: 16.11.22
@@ -547,12 +547,6 @@ importers:
       '@saleor/ui-kit':
         specifier: workspace:*
         version: link:../ui-kit
-      '@stripe/react-stripe-js':
-        specifier: 1.14.0
-        version: 1.14.0(@stripe/stripe-js@1.42.0)(react-dom@18.2.0)(react@18.2.0)
-      '@stripe/stripe-js':
-        specifier: 1.42.0
-        version: 1.42.0
       checkout-common:
         specifier: workspace:*
         version: link:../checkout-common
@@ -970,7 +964,6 @@ packages:
       ts-invariant: 0.10.3
       tslib: 2.4.0
       zen-observable-ts: 1.2.5
-    dev: false
 
   /@ardatan/relay-compiler@12.0.0(graphql@15.8.0):
     resolution: {integrity: sha512-9anThAaj1dQr6IGmzBMcfzOQKTa5artjuPmw8NYK/fiGEMjADbSguBY2FMDykt+QhilR3wc9VA/3yVju7JHg7Q==}
@@ -6092,23 +6085,6 @@ packages:
     dependencies:
       '@sinonjs/commons': 1.8.6
 
-  /@stripe/react-stripe-js@1.14.0(@stripe/stripe-js@1.42.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-T8VEqZxnXOVvzu32oydTr0wR3Qa51d/gd8+cQvX3wpheunSNxlJ9R+W7oJ6dAo6LHhot35gwzZu+MR85FbVlmw==}
-    peerDependencies:
-      '@stripe/stripe-js': ^1.42.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      '@stripe/stripe-js': 1.42.0
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
-  /@stripe/stripe-js@1.42.0:
-    resolution: {integrity: sha512-ZaQpZo5PRv/mN6157OywMW4fc7FIS+eI/tS12I1gU9MdvnL8fzFktuAU/g9FyUOL22E4t9hF1tsfLQAZcQDokQ==}
-    dev: false
-
   /@surma/rollup-plugin-off-main-thread@2.2.3:
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
     dependencies:
@@ -6699,6 +6675,19 @@ packages:
   /@tsconfig/node16@1.0.3:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
 
+  /@types/apollo-upload-client@17.0.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-NphAiBqzZv3iY8Cq+qWyi0QUFFzJ+nVd7QKI/iKV8RfILrpYDL69F/vlhjn4BNxKlmc3LxJHymcf3gFzLBwuZQ==}
+    dependencies:
+      '@apollo/client': 3.7.14(graphql@16.6.0)(react-dom@18.2.0)(react@18.2.0)
+      '@types/extract-files': 8.1.1
+      graphql: 16.6.0
+    transitivePeerDependencies:
+      - graphql-ws
+      - react
+      - react-dom
+      - subscriptions-transport-ws
+    dev: true
+
   /@types/aria-query@5.0.1:
     resolution: {integrity: sha512-XTIieEY+gvJ39ChLcB4If5zHtPxt3Syj5rgZR+e1ctpmK8NjPf0zFqsz4JpLJT0xla9GFDKjy8Cpu331nrmE1Q==}
     dev: true
@@ -6806,6 +6795,10 @@ packages:
       '@types/express-serve-static-core': 4.17.34
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.1
+
+  /@types/extract-files@8.1.1:
+    resolution: {integrity: sha512-dMJJqBqyhsfJKuK7p7HyyNmki7qj1AlwhUKWx6KrU7i1K2T2SPsUsSUTWFmr/sEM1q8rfR8j5IyUmYrDbrhfjQ==}
+    dev: true
 
   /@types/find-config@1.0.1:
     resolution: {integrity: sha512-H4DFIQMwxCKRgVWMSqALg6aowTOgZi5D4pSPBBuOQFJLRwfNZaByhC9+s870CZgTRJoyVg5J+iesdF5uvnJ0mA==}
@@ -7600,21 +7593,18 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.4.0
-    dev: false
 
   /@wry/equality@0.5.5:
     resolution: {integrity: sha512-tI95+tJlL2LoOY27EHy0V0zKRVgbPp6vk9p6ZqWZOCSVslEhYEGeI+gaskc2rnjQxfszsXhtgYZTQ1xAUrMkOg==}
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.4.0
-    dev: false
 
   /@wry/trie@0.3.2:
     resolution: {integrity: sha512-yRTyhWSls2OY/pYLfwff867r8ekooZ4UI+/gxot5Wj8EFwSf2rG+n+Mo/6LoLQm1TKA4GRj2+LCpbfS937dClQ==}
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.4.0
-    dev: false
 
   /@xmldom/xmldom@0.8.7:
     resolution: {integrity: sha512-sI1Ly2cODlWStkINzqGrZ8K6n+MTSbAeQnAipGyL+KZCXuHaRlj2gyyy8B/9MvsFFqN7XHryQnB2QwhzvJXovg==}
@@ -7846,6 +7836,18 @@ packages:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
+
+  /apollo-upload-client@17.0.0(@apollo/client@3.7.14)(graphql@16.6.0):
+    resolution: {integrity: sha512-pue33bWVbdlXAGFPkgz53TTmxVMrKeQr0mdRcftNY+PoHIdbGZD0hoaXHvO6OePJAkFz7OiCFUf98p1G/9+Ykw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >= 16.0.0}
+    peerDependencies:
+      '@apollo/client': ^3.0.0
+      graphql: 14 - 16
+    dependencies:
+      '@apollo/client': 3.7.14(graphql@16.6.0)(react-dom@18.2.0)(react@18.2.0)
+      extract-files: 11.0.0
+      graphql: 16.6.0
+    dev: false
 
   /arch@2.2.0:
     resolution: {integrity: sha512-Of/R0wqp83cgHozfIYLbBMnej79U/SVGOOyuB3VVFv1NRM/PSFMK12x9KVtiYzJqmnU5WR2qp0Z5rHb7sWGnFQ==}
@@ -12016,7 +12018,6 @@ packages:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
     dependencies:
       react-is: 16.13.1
-    dev: false
 
   /hoopy@0.1.4:
     resolution: {integrity: sha512-HRcs+2mr52W0K+x8RzcLzuPPmVIKMSv97RGHy0Ea9y/mpcaK+xTrjICA04KAHi4GRzxliNqNJEFYWHghy3rSfQ==}
@@ -14882,7 +14883,6 @@ packages:
     dependencies:
       '@wry/context': 0.7.2
       '@wry/trie': 0.3.2
-    dev: false
 
   /optionator@0.8.3:
     resolution: {integrity: sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==}
@@ -16766,6 +16766,7 @@ packages:
     engines: {node: '>=0.6'}
     dependencies:
       side-channel: 1.0.4
+    dev: true
 
   /query-string@7.1.1:
     resolution: {integrity: sha512-MplouLRDHBZSG9z7fpuAAcI7aAYjDLhtsiVZsevsfaHWDS2IDdORKbSd1kWUA+V4zyva/HZoSfpwnYMMQDhb0w==}
@@ -17589,7 +17590,6 @@ packages:
   /response-iterator@0.2.6:
     resolution: {integrity: sha512-pVzEEzrsg23Sh053rmDUvLSkGXluZio0qu8VT6ukrYuvtjVfCbDZH9d6PGXb8HZfzdNZt8feXv/jvUzlhRgLnw==}
     engines: {node: '>=0.8'}
-    dev: false
 
   /responselike@3.0.0:
     resolution: {integrity: sha512-40yHxbNcl2+rzXvZuVkrYohathsSJlMTXKryG5y8uciHv1+xDLHQpgjG64JUO9nrEq2jGLH6IZ8BcZyw3wrweg==}
@@ -18602,14 +18602,6 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  /stripe@10.15.0:
-    resolution: {integrity: sha512-KXw7dozfIEQCxsshjKUwsNwlD55CkhcvVgwwxFtQNikVlRpNUPy6Ljz2mN9OXjinbbmLIcn26MAiPxfNp8Adtg==}
-    engines: {node: ^8.1 || >=10.*}
-    dependencies:
-      '@types/node': 16.11.22
-      qs: 6.11.1
-    dev: false
-
   /style-inject@0.3.0:
     resolution: {integrity: sha512-IezA2qp+vcdlhJaVm5SOdPPTUu0FCEqfNSli2vRuSIBbu5Nq5UvygTk/VzeCqfLz2Atj3dVII5QBKGZRZ0edzw==}
     dev: true
@@ -18777,7 +18769,6 @@ packages:
   /symbol-observable@4.0.0:
     resolution: {integrity: sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ==}
     engines: {node: '>=0.10'}
-    dev: false
 
   /symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
@@ -19120,7 +19111,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       tslib: 2.5.0
-    dev: false
 
   /ts-jest@27.1.4(@babel/core@7.19.6)(@types/jest@27.4.0)(jest@27.5.1)(typescript@4.8.4):
     resolution: {integrity: sha512-qjkZlVPWVctAezwsOD1OPzbZ+k7zA5z3oxII4dGdZo5ggX/PL7kvwTM0pXTr10fAtbiVpJaL3bWd502zAhpgSQ==}
@@ -20484,11 +20474,9 @@ packages:
     resolution: {integrity: sha512-QZWQekv6iB72Naeake9hS1KxHlotfRpe+WGNbNx5/ta+R3DNjVO2bswf63gXlWDcs+EMd7XY8HfVQyP1X6T4Zg==}
     dependencies:
       zen-observable: 0.8.15
-    dev: false
 
   /zen-observable@0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
-    dev: false
 
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}

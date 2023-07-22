@@ -47,57 +47,59 @@ export function EmailPreferences() {
   });
 
   return (
-    <div className="mt-4 mb-4">
-      <h2 className="checkout-section-header-active mb-2">Change email</h2>
+    <div className="mt-2 mb-2">
+      <h2 className="checkout-section-header-active mb-2 text-md">Change email</h2>
       <form method="post" onSubmit={onEmailPreferenceSubmit}>
-        <div className="grid grid-cols-12 gap-4 w-full">
-          <div className="col-span-full">
-            <label htmlFor="newEmail" className="block pl-1 text-sm font-medium text-gray-700">
-              {t.formatMessage(messages.loginEmailFieldLabel)}
-            </label>
-            <input
-              className="px-4 py-2 rounded-md text-sm outline-none w-full"
-              type="email"
-              id="newEmail"
-              spellCheck={false}
-              {...register("newEmail", {
-                required: true,
-                pattern: /^\S+@\S+$/i,
-              })}
-            />
-            {!!errors.newEmail && (
-              <p className="mt-2 text-sm text-red-600">{errors.newEmail.message}</p>
-            )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+          <div className="grid grid-cols-12">
+            <div className="col-span-full">
+              <label htmlFor="newEmail" className="block pl-1 text-base font-medium text-gray-700">
+                {t.formatMessage(messages.loginEmailFieldLabel)}
+              </label>
+              <input
+                className="px-4 py-2 rounded-md text-sm outline-none w-full"
+                type="email"
+                id="newEmail"
+                spellCheck={false}
+                {...register("newEmail", {
+                  required: true,
+                  pattern: /^\S+@\S+$/i,
+                })}
+              />
+              {!!errors.newEmail && (
+                <p className="mt-2 text-sm text-red-600">{errors.newEmail.message}</p>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-12 gap-4 w-full mt-2">
-          <div className="col-span-full">
-            <label htmlFor="password" className="block pl-1 text-sm font-medium text-gray-700">
-              {t.formatMessage(messages.loginPasswordFieldLabel)}
-            </label>
-            <input
-              className="px-4 py-2 rounded-md text-sm outline-none w-full"
-              type="password"
-              id="password"
-              spellCheck={false}
-              {...register("password", {
-                required: true,
-              })}
-            />
-            {!!errors.password && (
-              <p className="mt-2 text-sm text-red-600">{errors.password.message}</p>
-            )}
+          <div className="grid grid-cols-12">
+            <div className="col-span-full">
+              <label htmlFor="password" className="block pl-1 text-sm font-medium text-gray-700">
+                {t.formatMessage(messages.loginPasswordFieldLabel)}
+              </label>
+              <input
+                className="px-4 py-2 rounded-md text-sm outline-none w-full"
+                type="password"
+                id="password"
+                spellCheck={false}
+                {...register("password", {
+                  required: true,
+                })}
+              />
+              {!!errors.password && (
+                <p className="mt-2 text-sm text-red-600">{errors.password.message}</p>
+              )}
+            </div>
           </div>
-        </div>
-        {!!successMessage && <p className="mt-2 text-sm text-green-600">{successMessage}</p>}
-        <div>
-          <button
-            className="mt-2 w-40 bg-green-500 hover:bg-green-400 text-white py-2 rounded-md transition duration-100"
-            onClick={() => onEmailPreferenceSubmit()}
-            type="submit"
-          >
-            {t.formatMessage(messages.saveButton)}
-          </button>
+          {!!successMessage && <p className="mt-2 text-sm text-green-600">{successMessage}</p>}
+          <div className="mt-2">
+            <button
+              className="w-40 bg-indigo-500 hover:bg-indigo-400 text-white py-2 rounded-md transition duration-100"
+              onClick={() => onEmailPreferenceSubmit()}
+              type="submit"
+            >
+              {t.formatMessage(messages.saveButton)}
+            </button>
+          </div>
         </div>
       </form>
     </div>

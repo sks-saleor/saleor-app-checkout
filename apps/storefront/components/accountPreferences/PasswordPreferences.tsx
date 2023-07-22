@@ -50,14 +50,14 @@ export function PasswordPreferences() {
     }
   });
   return (
-    <div className="mt-4 mb-4">
-      <h2 className="checkout-section-header-active mb-2">
+    <div className="mt-2 mb-2">
+      <h2 className="checkout-section-header-active mb-2 text-md">
         {t.formatMessage(messages.changePasswordHeader)}
       </h2>
       <form method="post" onSubmit={onPasswordPreferenceSubmit}>
         <div className="grid grid-cols-12 gap-4 w-full">
           <div className="col-span-full">
-            <label htmlFor="oldPassword" className="block pl-1 text-sm font-medium text-gray-700">
+            <label htmlFor="oldPassword" className="block pl-1 text-base font-medium text-gray-700">
               {t.formatMessage(messages.oldPasswordFieldLabel)}
             </label>
             <input
@@ -116,9 +116,9 @@ export function PasswordPreferences() {
           </div>
         </div>
         {!!successMessage && <p className="mt-2 text-sm text-green-600">{successMessage}</p>}
-        <div>
+        <div className="mt-4">
           <button
-            className="mt-2 w-40 bg-green-500 hover:bg-green-400 text-white py-2 rounded-md transition duration-100"
+            className="w-40 bg-indigo-500 hover:bg-indigo-400 text-white py-2 rounded-md transition duration-100"
             onClick={() => onPasswordPreferenceSubmit()}
             type="submit"
           >
