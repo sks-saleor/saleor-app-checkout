@@ -47,7 +47,6 @@ describe("/utils/frontend/misc/mapMetadataToSettings", () => {
           partnerId: "some_not_encrypted_id",
           liveApiKey: "some_decrypted_key",
         },
-        stripe: {},
         dummy: {},
       },
     };
@@ -70,7 +69,6 @@ describe("/utils/frontend/misc/mapMetadataToSettings", () => {
           partnerId: "some_not_encrypted_id",
           liveApiKey: "•••• _key",
         },
-        stripe: {},
         dummy: {},
       },
     };

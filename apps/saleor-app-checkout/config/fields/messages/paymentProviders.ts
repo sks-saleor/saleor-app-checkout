@@ -1,19 +1,10 @@
-import {
-  MollieProviderSettingID,
-  PaymentProviderID,
-  StripeProviderSettingID,
-} from "checkout-common";
+import { MollieProviderSettingID, PaymentProviderID } from "checkout-common";
 import { defineMessages } from "react-intl";
 
 export const paymentProvidersMessages = defineMessages<PaymentProviderID>({
   mollie: {
     defaultMessage: "Mollie",
     id: "messages/paymentProviders/CQH/Vb",
-    description: "payment provider",
-  },
-  stripe: {
-    defaultMessage: "Stripe",
-    id: "messages/paymentProviders/ehp06H",
     description: "payment provider",
   },
   dummy: {
@@ -36,25 +27,7 @@ export const molliePaymentProviderMessages = defineMessages<MollieProviderSettin
   },
 });
 
-export const stripePaymentProviderMessages = defineMessages<StripeProviderSettingID>({
-  publishableKey: {
-    defaultMessage: "Publishable Key",
-    id: "messages/paymentProviders/YBcvvL",
-    description: "payment provider setting",
-  },
-  secretKey: {
-    defaultMessage: "Secret Key",
-    id: "messages/paymentProviders/fQ20+Q",
-    description: "payment provider setting",
-  },
-  webhookSecret: {
-    defaultMessage: "Webhookd Secret",
-    id: "messages/paymentProviders/glq8nA",
-    description: "payment provider setting",
-  },
-});
-
-export const dummyPaymentProviderMessages = defineMessages<StripeProviderSettingID>({
+export const dummyPaymentProviderMessages = defineMessages<any>({
   publishableKey: {
     defaultMessage: "Publishable Key",
     id: "messages/paymentProviders/YBcvvL",

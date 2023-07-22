@@ -19,11 +19,6 @@ export const defaultPaymentProviderSettings: PaymentProviderSettingsValues<"unen
     apiKey: "",
     profileId: "",
   },
-  stripe: {
-    publishableKey: "",
-    secretKey: "",
-    webhookSecret: "",
-  },
   dummy: {
     dummyKey: "",
   },

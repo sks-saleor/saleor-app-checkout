@@ -16,14 +16,6 @@ export const paymentProviders: PaymentProviderSettingsValues<"encrypted"> = {
       value: testingVars.mollieProfileId,
     },
   },
-  stripe: {
-    secretKey: encryptSetting(testingVars.stripeSecretKey),
-    webhookSecret: encryptSetting(testingVars.stripeWebhookSecret),
-    publishableKey: {
-      encrypted: false,
-      value: testingVars.stripePublishableKey,
-    },
-  },
   dummy: { dummyKey: encryptSetting("") },
 };
 

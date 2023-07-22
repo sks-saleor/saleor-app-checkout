@@ -67,20 +67,6 @@ export const checkout: CheckoutFragment = {
       name: "Dummy",
       __typename: "PaymentGateway",
     },
-    {
-      id: "mirumee.payments.stripe",
-      name: "Stripe (Deprecated)",
-      __typename: "PaymentGateway",
-      currencies: ["EUR"],
-      config: [],
-    },
-    {
-      id: "saleor.payments.stripe",
-      name: "Stripe",
-      __typename: "PaymentGateway",
-      currencies: ["EUR"],
-      config: [],
-    },
   ],
   deliveryMethod: {
     id: "U2hpcHBpbmdNZXRob2Q6MjIyNQ==",

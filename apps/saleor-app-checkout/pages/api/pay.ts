@@ -10,8 +10,6 @@ import {
 import { createDummyPayment } from "@/saleor-app-checkout/backend/payments/providers/dummy/createPayment";
 import { createMolliePayment } from "@/saleor-app-checkout/backend/payments/providers/mollie";
 import { reuseExistingMollieSession } from "@/saleor-app-checkout/backend/payments/providers/mollie/verifySession";
-import { createStripePayment } from "@/saleor-app-checkout/backend/payments/providers/stripe/createPayment";
-import { reuseExistingStripeSession } from "@/saleor-app-checkout/backend/payments/providers/stripe/verifySession";
 import {
   CreatePaymentResult,
   ReuseExistingSessionParams,
@@ -53,8 +51,6 @@ const reuseExistingSession = (
   switch (payment.provider) {
     case "mollie":
       return reuseExistingMollieSession(saleorApiUrl, params);
-    case "stripe":
-      return reuseExistingStripeSession(saleorApiUrl, params);
     case "dummy":
       return undefined;
     default:
@@ -206,8 +202,6 @@ const getPaymentUrlIdForProvider = ({
   switch (body.provider) {
     case "mollie":
       return createMolliePayment(createPaymentData);
-    case "stripe":
-      return createStripePayment(createPaymentData);
     case "dummy":
       const url = new URL(body.redirectUrl);
       url.searchParams.set("order", order.id);

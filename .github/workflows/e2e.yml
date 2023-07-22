@@ -6,7 +6,7 @@ on:
       environment:
         required: true
         description: "Environment to run tests against"
-        default: "https://react-storefront-e2e.vercel.app/"
+        default: "https://staging-demo.saleor.io/"
         type: choice
         options:
           - https://staging-demo.saleor.io/
@@ -30,7 +30,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2
         with:
-          version: 7.11.0 # version used by Vercel
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: "16"
@@ -101,7 +101,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2
         with:
-          version: 7.11.0 # version used by Vercel
+          version: 8
       - uses: actions/setup-node@v3
         with:
           node-version: "16"

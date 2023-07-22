@@ -41,6 +41,7 @@ export const Root = ({ env }: RootProps) => {
   });
 
   useAuthChange({
+    saleorApiUrl,
     onSignedOut: () => {
       reset();
     },

@@ -6,7 +6,6 @@ import { messages } from "@/components/translations";
 import { CheckoutDetailsFragment } from "@/saleor/api";
 
 import { DUMMY_CREDIT_CARD_GATEWAY, DummyCreditCardSection } from "./DummyCreditCardSection";
-import { STRIPE_GATEWAY, StripeCreditCardSection } from "./StripeCreditCardSection";
 
 export interface PaymentSectionProps {
   checkout: CheckoutDetailsFragment;
@@ -15,7 +14,7 @@ export interface PaymentSectionProps {
 
 export function PaymentSection({ checkout, active }: PaymentSectionProps) {
   const t = useIntl();
-  const existingGateways = [STRIPE_GATEWAY, DUMMY_CREDIT_CARD_GATEWAY];
+  const existingGateways = [DUMMY_CREDIT_CARD_GATEWAY];
   const availableGateways = checkout.availablePaymentGateways.filter((g) =>
     existingGateways.includes(g.id)
   );
@@ -57,7 +56,6 @@ export function PaymentSection({ checkout, active }: PaymentSectionProps) {
           {chosenGateway === DUMMY_CREDIT_CARD_GATEWAY && (
             <DummyCreditCardSection checkout={checkout} />
           )}
-          {chosenGateway === STRIPE_GATEWAY && <StripeCreditCardSection checkout={checkout} />}
         </>
       )}
     </>

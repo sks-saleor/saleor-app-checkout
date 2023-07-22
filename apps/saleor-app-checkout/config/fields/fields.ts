@@ -15,14 +15,12 @@ import { paymentMethodsMessages } from "./messages/paymentMethods";
 import {
   molliePaymentProviderMessages,
   paymentProvidersMessages,
-  stripePaymentProviderMessages,
 } from "./messages/paymentProviders";
 import { withLabels, withNames } from "./utils";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import AppleIcon from "@material-ui/icons/Apple";
 import PayPalIcon from "./icons/PayPal";
 import MollieIcon from "./icons/Mollie";
-import StripeIcon from "./icons/Stripe";
 import DummyIcon from "./icons/Dummy";
 
 const paymentMethods: Omit<PaymentMethod, "name">[] = [
@@ -52,24 +50,6 @@ const molliePaymentProvider: Omit<PaymentProviderSettings<"mollie">, "label">[] 
   },
   {
     id: "apiKey",
-    type: "string",
-    encrypt: true,
-  },
-];
-
-const stripePaymentProvider: Omit<PaymentProviderSettings<"stripe">, "label">[] = [
-  {
-    id: "publishableKey",
-    type: "string",
-    encrypt: false,
-  },
-  {
-    id: "secretKey",
-    type: "string",
-    encrypt: true,
-  },
-  {
-    id: "webhookSecret",
     type: "string",
     encrypt: true,
   },
@@ -126,7 +106,6 @@ const customizationsFields: Record<CustomizationID, any> = {
 };
 const paymentProviderFields: Record<PaymentProviderID, any> = {
   mollie: molliePaymentProvider,
-  stripe: stripePaymentProvider,
   dummy: {},
 };
 
@@ -154,17 +133,6 @@ export const useMolliePaymentProvider = (): PaymentProvider<"mollie"> => {
   };
 };
 
-export const useStripePaymentProvider = (): PaymentProvider<"stripe"> => {
-  const intl = useIntl();
-
-  return {
-    id: "stripe",
-    label: intl.formatMessage(paymentProvidersMessages.stripe),
-    logo: StripeIcon,
-    settings: withLabels(intl, stripePaymentProviderMessages, stripePaymentProvider),
-  };
-};
-
 export const useDummyPaymentProvider = (): PaymentProvider<"dummy"> => {
   const intl = useIntl();
 
@@ -177,7 +145,6 @@ export const useDummyPaymentProvider = (): PaymentProvider<"dummy"> => {
 
 export const usePaymentProviders = (): PaymentProvider<PaymentProviderID>[] => [
   useMolliePaymentProvider(),
-  useStripePaymentProvider(),
 ];
 
 export const useBrandingCustomization = (): Customization<"branding"> => {

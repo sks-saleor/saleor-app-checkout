@@ -127,10 +127,6 @@
     "developer_comment": "payment provider setting",
     "string": "Publishable Key"
   },
-  "messages/paymentProviders/ehp06H": {
-    "developer_comment": "payment provider",
-    "string": "Stripe"
-  },
   "messages/paymentProviders/fQ20+Q": {
     "developer_comment": "payment provider setting",
     "string": "Secret Key"

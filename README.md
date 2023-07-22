@@ -30,9 +30,6 @@
 🏎️ **modern & fast**:
 The project utilizes all the best practices for e-commerce, like SSR, ISR, and image optimization.
 
-💳 **integrated payments**:
-Reduce the purchase friction by taking advantage of integrations with modern payment providers such as Mollie or Stripe.
-
 🛠️ **easily customizable**:
 TailwindCSS can be easily extended and tweaked, or completely replaced with your favorite CSS solution.
 
@@ -77,12 +74,8 @@ saleor storefront create
 First install [`pnpm`](https://pnpm.io/) (an alternative to `npm`, focused on performance) globally:
 
 ```
-npm install -g pnpm@7.11.0
+npm install -g pnpm
 ```
-
-> **Note**
->
-> `react-storefront` requires version 7.11.0 of pnpm to run properly, using newer versions won't work
 
 > **Note**
 > You might also consider using [proto](https://moonrepo.dev/docs/proto/install) for managing your `pnpm` and `node` versions across different projects. This repository has a configuration for proto.
@@ -118,10 +111,6 @@ Saleor App Checkout supports three configurable payment gateways:
 </a>
 
 <br>
-
-[![Stripe](./docs/logos/stripe_blurple.svg)](https://stripe.com/)
-
-For further information, please go to [docs/payment/index.md](./docs/payment/index.md).
 
 ## Deployment
 
