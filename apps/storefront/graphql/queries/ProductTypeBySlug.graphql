@@ -1,0 +1,6 @@
+query ProductTypeBySlug($id: ID!) {
+  productType(id: $id) {
+    id
+    name
+  }
+}

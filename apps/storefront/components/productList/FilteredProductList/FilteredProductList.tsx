@@ -27,6 +27,9 @@ export interface FilteredProductListProps {
   attributeFiltersData: AttributeFilterFragment[];
   collectionIDs?: string[];
   categoryIDs?: string[];
+  productTypeIDs?: string[];
+  isRelated?: boolean;
+  perPage?: number;
 }
 
 export interface Filters {
@@ -38,6 +41,9 @@ export function FilteredProductList({
   attributeFiltersData,
   collectionIDs,
   categoryIDs,
+  productTypeIDs,
+  isRelated,
+  perPage = 40,
 }: FilteredProductListProps) {
   const [queryFilters, setQueryFilters] = useQueryState("filters", {
     parse: parseQueryAttributeFilters,
@@ -67,13 +73,14 @@ export function FilteredProductList({
   useEffect(() => {
     setProductsFilter({
       attributes: queryFilters.filter((filter) => filter.values?.length),
+      ...(productTypeIDs?.length && { productTypes: productTypeIDs }),
       ...(categoryIDs?.length && { categories: categoryIDs }),
       ...(collectionIDs?.length && { collections: collectionIDs }),
       ...(inStockFilter && { stockAvailability: "IN_STOCK" }),
     });
     // Eslint does not recognize stringified queryFilters, so we have to ignore it
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inStockFilter, JSON.stringify(queryFilters), categoryIDs, collectionIDs]);
+  }, [inStockFilter, JSON.stringify(queryFilters), productTypeIDs, categoryIDs, collectionIDs]);
 
   const removeAttributeFilter = (attributeSlug: string, choiceSlug: string) => {
     const newFilters = queryFilters.reduce((result: UrlFilter[], filter: UrlFilter) => {
@@ -137,40 +144,42 @@ export function FilteredProductList({
   return (
     <>
       <div className="flex flex-col divide-y">
-        <div className="flex items-center">
-          <div className="flex-grow">
-            {attributeFiltersData.map((attribute) => (
-              <FilterDropdown
-                key={attribute.id}
-                label={translate(attribute, "name") || ""}
-                optionToggle={addAttributeFilter}
-                attributeSlug={attribute.slug!}
-                options={getFilterOptions(attribute, pills)}
+        {!isRelated && (
+          <div className="flex items-center">
+            <div className="flex-grow">
+              {attributeFiltersData.map((attribute) => (
+                <FilterDropdown
+                  key={attribute.id}
+                  label={translate(attribute, "name") || ""}
+                  optionToggle={addAttributeFilter}
+                  attributeSlug={attribute.slug!}
+                  options={getFilterOptions(attribute, pills)}
+                />
+              ))}
+              <SortingDropdown
+                optionToggle={(field?: ProductOrderField, direction?: OrderDirection) => {
+                  return setSortBy(field && direction ? { field, direction } : null, {
+                    scroll: false,
+                    shallow: true,
+                  });
+                }}
+                chosen={sortBy}
               />
-            ))}
-            <SortingDropdown
-              optionToggle={(field?: ProductOrderField, direction?: OrderDirection) => {
-                return setSortBy(field && direction ? { field, direction } : null, {
-                  scroll: false,
-                  shallow: true,
-                });
-              }}
-              chosen={sortBy}
-            />
-            <StockToggle
-              enabled={inStockFilter}
-              onChange={(value: boolean) =>
-                setInStockFilter(!!value || null, {
-                  scroll: false,
-                  shallow: true,
-                })
-              }
-            />
+              <StockToggle
+                enabled={inStockFilter}
+                onChange={(value: boolean) =>
+                  setInStockFilter(!!value || null, {
+                    scroll: false,
+                    shallow: true,
+                  })
+                }
+              />
+            </div>
+            <div className="flex-none text-main-2 text-base">
+              <div>{itemsCounter} items</div>
+            </div>
           </div>
-          <div className="flex-none text-main-2 text-base">
-            <div>{itemsCounter} items</div>
-          </div>
-        </div>
+        )}
         {pills.length > 0 && (
           <FilterPills
             pills={pills}
@@ -179,13 +188,13 @@ export function FilteredProductList({
           />
         )}
       </div>
-
       <div className="mt-4">
         <ProductCollection
           filter={productsFilter}
           sortBy={sortBy || undefined}
           setCounter={setItemsCounter}
-          perPage={40}
+          perPage={perPage}
+          isRelated={isRelated}
         />
       </div>
     </>

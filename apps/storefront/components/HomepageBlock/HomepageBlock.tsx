@@ -19,6 +19,9 @@ export function HomepageBlock({ menuItem }: HomepageBlockProps) {
   const paths = usePaths();
   const t = useIntl();
   const filter: ProductFilterInput = {};
+
+  // console.log("menuItem::: ", menuItem);
+
   if (menuItem.page?.id) {
     const content = translate(menuItem.page, "content");
     return <div className="pb-10">{content && <RichText jsonStringData={content} />}</div>;
@@ -35,11 +38,15 @@ export function HomepageBlock({ menuItem }: HomepageBlockProps) {
   return (
     <div className="pb-8" data-testid="category">
       <h1
-        className="text-3xl font-extrabold tracking-tight text-gray-900 pb-4"
+        className="text-3xl font-extrabold tracking-tight text-center mb-2"
         data-testid={`categoryName${menuItem.name}`}
       >
-        {translate(menuItem, "name")}
+        {/* {translate(menuItem, "name")} */}
+        Best Sellers
       </h1>
+      <p className="text-center text-base pb-8 text-gray-500">
+        We have everything you need to make your life easier. From fresh groceries to household
+      </p>
       <ProductCollection filter={filter} allowMore={false} />
       <div className="flex flex-row-reverse p-4">
         <Link href={link} passHref legacyBehavior>

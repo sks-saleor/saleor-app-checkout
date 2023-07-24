@@ -6,6 +6,7 @@ fragment ProductDetailsFragment on Product {
   seoDescription
   seoTitle
   isAvailableForPurchase
+  rating
   translation(languageCode: $locale) {
     id
     description
@@ -16,6 +17,11 @@ fragment ProductDetailsFragment on Product {
   }
   category {
     ...CategoryBasicFragment
+    name
+  }
+  productType {
+    id
+    name
   }
   variants {
     ...ProductVariantDetailsFragment
@@ -34,8 +40,5 @@ fragment ProductDetailsFragment on Product {
   }
   thumbnail {
     ...ImageFragment
-  }
-  category {
-    name
   }
 }

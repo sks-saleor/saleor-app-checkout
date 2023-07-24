@@ -7,9 +7,9 @@ import { usePaths } from "@/lib/paths";
 import { useUser } from "@/lib/useUser";
 import { useSaleorAuthContext } from "@saleor/auth-sdk/react";
 
-export type AccountLayoutProps = { children: ReactNode };
+export type AccountLayoutProps = { children: ReactNode; bodyOnly?: boolean };
 
-export function AccountLayout({ children }: AccountLayoutProps) {
+export function AccountLayout({ children, bodyOnly }: AccountLayoutProps) {
   const router = useRouter();
   const paths = usePaths();
   const { authenticated, loading } = useUser();
@@ -31,12 +31,14 @@ export function AccountLayout({ children }: AccountLayoutProps) {
   }
 
   return (
-    <Layout>
+    <Layout bodyOnly={bodyOnly}>
       <div className="py-10">
         <main className="flex flex-col md:flex-row container px-8">
-          <div className="mb-2 flex-initial md:w-3/5">
-            <NavigationPanel />
-          </div>
+          {!bodyOnly && (
+            <div className="mb-2 flex-initial md:w-3/5">
+              <NavigationPanel />
+            </div>
+          )}
           <div className="flex flex-initial w-full flex-col overflow-y-auto md:px-4 space-y-4">
             {children}
           </div>

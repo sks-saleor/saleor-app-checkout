@@ -1,9 +1,10 @@
 query FilteringAttributesQuery(
   $filter: AttributeFilterInput!
+  $first: Int = 100
   $channel: String!
   $locale: LanguageCodeEnum!
 ) {
-  attributes(filter: $filter, first: 100, channel: $channel) {
+  attributes(filter: $filter, first: $first, channel: $channel) {
     totalCount
     edges {
       node {

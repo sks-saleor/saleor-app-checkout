@@ -5,7 +5,7 @@ import { ApolloProvider } from "@apollo/client";
 import { NextPage } from "next";
 import { AppProps } from "next/app";
 import NextNProgress from "nextjs-progressbar";
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useEffect } from "react";
 
 import { DemoBanner } from "@/components/DemoBanner";
 import { RegionsProvider } from "@/components/RegionsProvider";
@@ -15,22 +15,22 @@ import { API_URI, DEMO_MODE } from "@/lib/const";
 import { CheckoutProvider } from "@/lib/providers/CheckoutProvider";
 import { SaleorAuthProvider, useAuthChange, useSaleorAuthClient } from "@saleor/auth-sdk/react";
 import { useAuthenticatedApolloClient } from "@/lib/hooks/useAuthenticatedApolloClient";
+import { getQueryParams } from "@/lib/url";
 
 type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
+  getLayout?: (page: ReactElement, router?: AppProps["router"]) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page: ReactElement) => page);
-
   const useSaleorAuthClientProps = useSaleorAuthClient({
     saleorApiUrl: API_URI,
   });
-
+  const { refreshToken } = getQueryParams(router);
   const { saleorAuthClient } = useSaleorAuthClientProps;
 
   const { apolloClient, reset, refetch } = useAuthenticatedApolloClient({
@@ -38,6 +38,16 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     uri: API_URI,
     typePolicies,
   });
+
+  useEffect(() => {
+    // hack for react-native app
+    if (refreshToken) {
+      // @ts-ignore
+      saleorAuthClient.storageHandler.setRefreshToken(refreshToken);
+      // @ts-ignore
+      saleorAuthClient.storageHandler?.setAuthState("signedIn");
+    }
+  }, [refreshToken]);
 
   useAuthChange({
     saleorApiUrl: API_URI,
@@ -53,7 +63,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             <BaseSeo />
             <NextNProgress color="#5B68E4" options={{ showSpinner: false }} />
             {DEMO_MODE && <DemoBanner />}
-            {getLayout(<Component {...pageProps} />)}
+            {getLayout(<Component {...pageProps} />, router)}
           </RegionsProvider>
         </CheckoutProvider>
       </ApolloProvider>

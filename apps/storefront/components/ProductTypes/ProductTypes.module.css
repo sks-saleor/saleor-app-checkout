@@ -1,0 +1,5 @@
+.card {
+  box-shadow: 4px 8px 30px 0px rgba(141, 141, 141, 0.1);
+  background-color: #ffffff;
+  @apply w-[250px] h-[133px] m-4 bg-gray-200 rounded-md flex justify-center items-center hover:border-sky-600 transition-all bg-cover;
+}

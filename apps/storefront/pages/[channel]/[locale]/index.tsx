@@ -13,6 +13,7 @@ import {
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/ssr/common";
 import BannerPage from "@/components/BannerPage";
+import { ProductTypes } from "@/components/ProductTypes";
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const result: ApolloQueryResult<HomepageBlocksQuery> = await serverApolloClient.query<
@@ -34,16 +35,15 @@ function Home({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
     <>
       <BaseSeo />
       <div className="pb-10">
-        <header className="mb-4">
+        <header>
           <div className="container" />
         </header>
         <main>
           <BannerPage />
-          <div className="container">
+          <div className="lg:px-[100px] md:px-[16px]">
+            <ProductTypes />
             {menuData?.menu?.items?.map((m) => {
-              if (!m) {
-                return null;
-              }
+              if (!m) return null;
               return <HomepageBlock key={m.id} menuItem={m} />;
             })}
           </div>

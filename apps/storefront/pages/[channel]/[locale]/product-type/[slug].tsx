@@ -5,20 +5,19 @@ import React, { ReactElement } from "react";
 
 import { Layout, PageHero } from "@/components";
 import { FilteredProductList } from "@/components/productList/FilteredProductList";
-import { CollectionPageSeo } from "@/components/seo/CollectionPageSeo";
 import { mapEdgesToItems } from "@/lib/maps";
 import { contextToRegionQuery } from "@/lib/regions";
-import { translate } from "@/lib/translations";
 import {
   AttributeFilterFragment,
-  CollectionBySlugDocument,
-  CollectionBySlugQuery,
-  CollectionBySlugQueryVariables,
   FilteringAttributesQuery,
   FilteringAttributesQueryDocument,
   FilteringAttributesQueryVariables,
+  ProductTypeBySlugQuery,
+  ProductTypeBySlugQueryVariables,
+  ProductTypeBySlugDocument,
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/ssr/common";
+import usePaths from "@/lib/paths";
 
 export const getStaticProps = async (
   context: GetStaticPropsContext<{ channel: string; locale: string; slug: string }>
@@ -30,14 +29,14 @@ export const getStaticProps = async (
     };
   }
 
-  const collectionSlug = context.params.slug.toString();
-  const response: ApolloQueryResult<CollectionBySlugQuery> = await serverApolloClient.query<
-    CollectionBySlugQuery,
-    CollectionBySlugQueryVariables
+  const productTypeSlug = context.params.slug.toString();
+  const response: ApolloQueryResult<ProductTypeBySlugQuery> = await serverApolloClient.query<
+    ProductTypeBySlugQuery,
+    ProductTypeBySlugQueryVariables
   >({
-    query: CollectionBySlugDocument,
+    query: ProductTypeBySlugDocument,
     variables: {
-      slug: collectionSlug,
+      id: productTypeSlug,
       ...contextToRegionQuery(context),
     },
   });
@@ -48,7 +47,7 @@ export const getStaticProps = async (
       variables: {
         ...contextToRegionQuery(context),
         filter: {
-          inCollection: response.data.collection?.id,
+          inProductType: response.data.productType?.id,
         },
       },
     });
@@ -58,32 +57,32 @@ export const getStaticProps = async (
 
   return {
     props: {
-      collection: response.data.collection,
+      productType: response.data.productType,
       attributeFiltersData: attributes,
     },
   };
 };
 function CollectionPage({
-  collection,
+  productType,
   attributeFiltersData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  if (!collection) {
+  if (!productType) {
     return <Custom404 />;
   }
 
   return (
     <>
-      <CollectionPageSeo collection={collection} />
       <header className="lg:px-[100px] md:px-[16px] mb-4 pt-4 border-t">
         <PageHero
-          title={translate(collection, "name")}
-          description={translate(collection, "description") || ""}
+          title={productType?.name || ""}
+          description={""}
+          breadcrumbs={[{ label: "Home", link: "/" }, { label: productType?.name || "" }]}
         />
       </header>
-      <div className="lg:px-[100px] md:px-[16px] px-8 mt-4 mb-16">
+      <div className="lg:px-[100px] md:px-[16px] px-8 mb-16">
         <FilteredProductList
           attributeFiltersData={attributeFiltersData}
-          collectionIDs={[collection.id]}
+          productTypeIDs={[productType.id]}
         />
       </div>
     </>

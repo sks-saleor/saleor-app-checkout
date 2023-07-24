@@ -28,6 +28,8 @@ import {
   useCreateCheckoutMutation,
 } from "@/saleor/api";
 import { serverApolloClient } from "@/lib/ssr/common";
+import { Breadcrumb } from "@/components/PageHero/Breadcrumb";
+import { RelatedProducts } from "@/components/product/RelatedProducts";
 
 export type OptionalQuery = {
   variant?: string;
@@ -162,11 +164,17 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   return (
     <>
       <ProductPageSeo product={product} />
+      <hr />
       <main
         className={clsx(
-          "grid grid-cols-1 gap-[3rem] max-h-full overflow-auto md:overflow-hidden container pt-8 px-8 md:grid-cols-3"
+          "grid grid-cols-1 gap-[3rem] max-h-full overflow-auto md:overflow-hidden container pt-4 pb-16 px-8 md:grid-cols-3"
         )}
       >
+        <div className="col-span-12">
+          <Breadcrumb
+            breadcrumbs={[{ label: "Home", link: "/" }, { label: translate(product, "name") }]}
+          />
+        </div>
         <div className="col-span-2">
           <ProductGallery product={product} selectedVariant={selectedVariant} />
         </div>
@@ -197,15 +205,13 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
               </Link>
             )}
           </div>
-
           <VariantSelector product={product} selectedVariantID={selectedVariantID} />
-
           <button
             onClick={onAddToCart}
             type="submit"
             disabled={isAddToCartButtonDisabled}
             className={clsx(
-              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent  focus:outline-none",
+              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent focus:outline-none",
               !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
             )}
             data-testid="addToCartButton"
@@ -214,28 +220,26 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
               ? t.formatMessage(messages.adding)
               : t.formatMessage(messages.addToCart)}
           </button>
-
           {!selectedVariant && (
             <p className="text-base text-yellow-600">
               {t.formatMessage(messages.variantNotChosen)}
             </p>
           )}
-
           {selectedVariant?.quantityAvailable === 0 && (
             <p className="text-base text-yellow-600" data-testid="soldOut">
               {t.formatMessage(messages.soldOut)}
             </p>
           )}
-
           {!!addToCartError && <p>{addToCartError}</p>}
-
           {description && (
             <div className="space-y-6">
               <RichText jsonStringData={description} />
             </div>
           )}
-
           <AttributeDetails product={product} selectedVariant={selectedVariant} />
+        </div>
+        <div className="col-span-12">
+          <RelatedProducts product={product} />
         </div>
       </main>
     </>

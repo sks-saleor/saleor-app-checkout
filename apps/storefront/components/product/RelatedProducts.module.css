@@ -1,0 +1,3 @@
+.related-line {
+  @apply pb-4 before:content-[''] before:h-[2px] before:w-[199px] before:bg-[#F96822] before:absolute;
+}

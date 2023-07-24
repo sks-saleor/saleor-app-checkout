@@ -1,12 +1,9 @@
 .footer {
-  @apply sm:container;
+  @apply w-full bg-[#000211];
 }
 
 .footer-inner {
-  @apply px-6 border-0;
-}
-.footer-hr {
-  @apply border-[0.5px];
+  @apply border-0 bg-transparent py-[90px] lg:px-[100px] md:px-[16px];
 }
 
 @screen sm {
@@ -25,9 +22,9 @@
 }
 
 .menu-heading {
-  @apply block text-md font-bold mb-4 cursor-pointer hover:underline;
+  @apply block text-white text-md font-bold mb-4 cursor-pointer hover:underline;
 }
 
 .menu-link {
-  @apply text-base cursor-pointer hover:underline;
+  @apply text-base text-white cursor-pointer hover:underline;
 }

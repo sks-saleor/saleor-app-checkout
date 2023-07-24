@@ -39,10 +39,8 @@ export function ProductGallery({ product, selectedVariant }: ProductGalleryProps
           return (
             <div
               key={media.url}
-              className="aspect-w-1 aspect-h-1"
-              style={{
-                scrollSnapAlign: "start",
-              }}
+              className="aspect-w-2 aspect-h-1 relative overflow-hidden"
+              style={{ scrollSnapAlign: "start" }}
             >
               {media.type === "IMAGE" && (
                 <Image
@@ -50,7 +48,7 @@ export function ProductGallery({ product, selectedVariant }: ProductGalleryProps
                   src={media.url}
                   alt={media.alt}
                   layout="fill"
-                  objectFit="cover"
+                  objectFit="contain"
                   role="button"
                   tabIndex={-2}
                   priority

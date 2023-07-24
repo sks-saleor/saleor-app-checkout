@@ -1,4 +1,4 @@
-query ProductCollection(
+query ProductByProductType(
   $before: String
   $after: String
   $first: Int = 4

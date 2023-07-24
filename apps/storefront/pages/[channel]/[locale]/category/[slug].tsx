@@ -43,7 +43,6 @@ export const getStaticProps = async (
       locale: contextToRegionQuery(context).locale,
     },
   });
-
   const attributesResponse: ApolloQueryResult<FilteringAttributesQuery> =
     await serverApolloClient.query<FilteringAttributesQuery, FilteringAttributesQueryVariables>({
       query: FilteringAttributesQueryDocument,

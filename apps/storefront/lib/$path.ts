@@ -120,6 +120,15 @@ export const pagesPath = {
         query: { channel, locale },
         hash: url?.hash,
       }),
+      productType: {
+        _slug: (slug: string | number) => ({
+          $url: (url?: { hash?: string; id?: string }) => ({
+            pathname: "/[channel]/[locale]/product-type/[slug]" as const,
+            query: { channel, locale, slug, id: url?.id },
+            hash: url?.hash,
+          }),
+        }),
+      },
     }),
   }),
   $url: (url?: { hash?: string }) => ({ pathname: "/" as const, hash: url?.hash }),

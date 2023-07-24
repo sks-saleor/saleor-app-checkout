@@ -73,7 +73,10 @@
 }
 
 .user-menu {
-  @apply absolute top-[100%] right-0 shadow-modal flex flex-col  invisible;
+  background-color: #fff;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  @apply absolute top-[100%] right-0 shadow-modal flex flex-col invisible z-[1400];
 }
 
 .user-menu-item {

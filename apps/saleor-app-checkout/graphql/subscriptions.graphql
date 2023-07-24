@@ -1,11 +1,11 @@
 subscription TransactionActionRequestSubscription {
   event {
-    ... on TransactionActionRequest {
+    ... on TransactionChargeRequested {
       # temporary paste fragment due to Saleor validation issues
       transaction {
         id
-        reference
-        type
+        pspReference
+        message
         authorizedAmount {
           amount
           currency
@@ -13,7 +13,7 @@ subscription TransactionActionRequestSubscription {
         chargedAmount {
           amount
         }
-        voidedAmount {
+        canceledAmount {
           amount
         }
         refundedAmount {
@@ -28,11 +28,11 @@ subscription TransactionActionRequestSubscription {
   }
 }
 
-fragment TransactionActionPayload on TransactionActionRequest {
+fragment TransactionActionPayload on TransactionChargeRequested {
   transaction {
     id
-    reference
-    type
+    pspReference
+    message
     authorizedAmount {
       amount
       currency
@@ -40,7 +40,7 @@ fragment TransactionActionPayload on TransactionActionRequest {
     chargedAmount {
       amount
     }
-    voidedAmount {
+    canceledAmount {
       amount
     }
     refundedAmount {

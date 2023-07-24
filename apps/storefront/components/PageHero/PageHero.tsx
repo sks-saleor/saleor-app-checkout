@@ -1,9 +1,8 @@
 import { ChipButton } from "@saleor/ui-kit";
 import React from "react";
-
-import { Box } from "../Box";
 import { RichText } from "../RichText";
-
+import { Breadcrumb } from "./Breadcrumb";
+import { BreadcrumbProps } from "./types";
 export interface PageHeroProps {
   title: string;
   description?: string;
@@ -11,16 +10,17 @@ export interface PageHeroProps {
     label: string;
     onClick: () => void;
   }[];
+  breadcrumbs?: BreadcrumbProps[];
 }
 
-export function PageHero({ title, description, pills = [] }: PageHeroProps) {
+export function PageHero({ title, description, pills = [], breadcrumbs = [] }: PageHeroProps) {
   return (
-    <Box>
-      <div className="sm:ml-20 sm:text-left">
+    <>
+      <Breadcrumb breadcrumbs={breadcrumbs} />
+      <div className="sm:text-left mt-8">
         <h1 className="text-5xl font-bold mb-4" data-testid={`titleOf${title}`}>
           {title}
         </h1>
-
         {description && (
           <div className="text-lg inline-block sm:block my-6 text-main-1">
             <RichText jsonStringData={description} />
@@ -34,7 +34,7 @@ export function PageHero({ title, description, pills = [] }: PageHeroProps) {
           </div>
         )}
       </div>
-    </Box>
+    </>
   );
 }
 

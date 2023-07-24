@@ -26,6 +26,10 @@ module.exports = {
         },
       },
       colors: {
+        indigo: {
+          400: "#2D3990",
+          500: "#223263",
+        },
         action: {
           1: "#5B68E4",
           2: "rgba(91, 104, 228, 0.8)",
@@ -56,7 +60,7 @@ module.exports = {
         DEFAULT: "1px",
       },
       fontFamily: {
-        sans: ["Helvetica"],
+        sans: ["Manrope", "sans-serif"],
       },
       fontWeight: {
         normal: 400,

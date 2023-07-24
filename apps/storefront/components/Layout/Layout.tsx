@@ -1,16 +1,20 @@
 import { Footer } from "../Footer";
-import { Navbar } from "../Navbar";
 import { Header } from "../Header";
+import styles from "./Layout.module.css";
 export interface LayoutProps {
   children?: React.ReactNode;
+  bodyOnly?: boolean;
 }
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children, bodyOnly }: LayoutProps) {
+  if (bodyOnly) return <div className="align-middle flex flex-col flex-grow">{children}</div>;
+
   return (
     <>
-      <Header />
-      <Navbar />
-      <div className="align-middle flex flex-col flex-grow">{children}</div>
+      <div className="lg:px-[100px] md:px-[16px]">
+        <Header />
+      </div>
+      <div className={`${styles.main} align-middle flex flex-col flex-grow`}>{children}</div>
       <Footer />
     </>
   );

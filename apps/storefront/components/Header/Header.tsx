@@ -3,7 +3,6 @@ import clsx from "clsx";
 import Link from "next/link";
 import styles from "./Header.module.css";
 import Image from "next/legacy/image";
-import { SearchBar } from "./SearchBar";
 import NavIconButton from "../Navbar/NavIconButton";
 import UserMenu from "../Navbar/UserMenu";
 import usePaths from "@/lib/paths";
@@ -14,6 +13,8 @@ import { useCheckout } from "@/lib/providers/CheckoutProvider";
 import { useRegions } from "@/components/RegionsProvider";
 import { invariant } from "@apollo/client/utilities/globals";
 import { BurgerMenu } from "../BurgerMenu";
+import { PhoneIcon } from "@heroicons/react/outline";
+import Navbar from "../Navbar";
 
 export function Header() {
   const paths = usePaths();
@@ -72,13 +73,13 @@ export function Header() {
           <div className="flex items-center flex-1 flex-row">
             <Link href="/" passHref legacyBehavior>
               <a href="pass" className="hidden sm:inline-block">
-                <div className="mt-px group block h-[79px] w-[191px] relative">
+                <div className="mt-px group block h-[44px] w-[72px] relative">
                   <Image src="/saleor.svg" alt="Le Story logo" layout="fill" />
                 </div>
               </a>
             </Link>
-            <div className="flex flex-1 px-8">
-              <SearchBar />
+            <div className="flex flex-1 justify-center">
+              <Navbar />
             </div>
             <div className="flex justify-end">
               {!authenticated ? (
@@ -93,6 +94,15 @@ export function Header() {
               <a href={externalCheckoutUrl} className="ml-2 hidden xs:flex" data-testid="cartIcon">
                 <NavIconButton isButton={false} icon="bag" aria-hidden="true" counter={counter} />
               </a>
+              <div className="ml-2 hidden xs:flex items-center justify-center pl-14">
+                <PhoneIcon width={24} />
+                <div className="flex flex-col flex-1 pl-2">
+                  <p className="text-sm leading-none font-thin">Hot Line Number</p>
+                  <a href="tel:023881629" className="text-sm font-medium">
+                    (855)23 88 16 29
+                  </a>
+                </div>
+              </div>
               <NavIconButton
                 icon="menu"
                 className="ml-2 lg:hidden"
@@ -101,7 +111,6 @@ export function Header() {
             </div>
           </div>
         </div>
-        <hr />
       </div>
       <BurgerMenu open={isBurgerOpen} onCloseClick={() => setBurgerOpen(false)} />
     </>

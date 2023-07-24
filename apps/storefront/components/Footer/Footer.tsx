@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import Image from "next/legacy/image";
 import Link from "next/link";
 import { HTMLAttributes } from "react";
 
@@ -32,23 +31,10 @@ export function Footer({ className, ...rest }: FooterProps) {
   // console.log("menu:: ", menu);
   return (
     <>
-      <hr className={styles["footer-hr"]} />
       <footer className={clsx(styles.footer, className)} {...rest}>
         <Box className={styles["footer-inner"]}>
           <div className="flex mb-14 sm:mb-0">
-            <div className="md:border-r-[0.5px] md:border-[#A5A5A5] md:pr-[100px]">
-              <Link href={paths.$url()} passHref legacyBehavior>
-                <a href="pass" className="hidden sm:inline-block">
-                  <div className="mt-px group block h-[79px] w-[191px] relative">
-                    <Image src="/saleor.svg" alt="Le Story logo" layout="fill" />
-                  </div>
-                </a>
-              </Link>
-              <h5 className="text-[15px] font-bold leading-[17px] mt-4">
-                Tan Brothers Auto Co., Ltd.
-              </h5>
-            </div>
-            <div className="grid grid-cols-2 gap-[2rem] w-full sm:w-auto sm:flex sm:flex-wrap sm:justify-end sm:ml-auto">
+            <div className="grid grid-cols-4">
               {menu.map((item) => (
                 <div className="sm:ml-14" key={item?.id}>
                   {item?.url ? (
@@ -107,6 +93,9 @@ export function Footer({ className, ...rest }: FooterProps) {
             </div>
           </div>
         </Box>
+        <div className="border-t-[0.5px] border-[#282828] py-4 lg:px-[100px] md:px-[16px]">
+          <p className="text-[#ADADAD] text-sm">Copyright 2023 - Tan Brothers Auto Co., Ltd.</p>
+        </div>
       </footer>
     </>
   );

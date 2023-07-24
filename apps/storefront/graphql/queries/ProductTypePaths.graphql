@@ -1,0 +1,15 @@
+query ProductTypePaths($first: Int = 30, $after: String) {
+  productTypes(first: $first, after: $after) {
+    edges {
+      node {
+        id
+        name
+        slug
+        metadata {
+          key
+          value
+        }
+      }
+    }
+  }
+}

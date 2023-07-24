@@ -2,6 +2,18 @@ fragment ProductCardFragment on Product {
   id
   slug
   name
+  rating
+  defaultVariant {
+    pricing {
+      onSale
+      price {
+        gross {
+          amount
+          currency
+        }
+      }
+    }
+  }
   translation(languageCode: $locale) {
     id
     name
