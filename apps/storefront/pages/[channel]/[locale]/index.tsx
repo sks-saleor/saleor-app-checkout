@@ -42,8 +42,8 @@ function Home({ menuData }: InferGetStaticPropsType<typeof getStaticProps>) {
           <BannerPage />
           <div className="lg:px-[100px] md:px-[16px]">
             <ProductTypes />
-            {menuData?.menu?.items?.map((m) => {
-              if (!m) return null;
+            {menuData?.menu?.items?.map((m, index) => {
+              if (!m || index > 0) return null;
               return <HomepageBlock key={m.id} menuItem={m} />;
             })}
           </div>

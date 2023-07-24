@@ -40,7 +40,7 @@ export const SearchBar = () => {
           />
           <button
             type="submit"
-            className="text-white text-md absolute top-[10px] right-[10px] h-[50px] right-0 w-[140px] bottom-0 bg-indigo-500 hover:bg-indigo-400 rounded-[39px] focus:ring-4 focus:outline-none focus:ring-blue-300"
+            className="text-white text-md absolute top-[10px] right-[10px] h-[50px] w-[140px] bottom-0 bg-indigo-500 hover:bg-indigo-400 rounded-[39px] focus:ring-4 focus:outline-none focus:ring-blue-300"
           >
             SEARCH
           </button>

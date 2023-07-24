@@ -5,16 +5,20 @@ import SearchBar from "../Header/SearchBar";
 export const BannerPage = () => {
   const { data } = usePageBannerQuery({ variables: { slug: "banner_home" } });
   const page = data?.page;
-  const attributes = page?.attributes;
-  if (!attributes?.length) return null;
-  let url = null;
-  for (const value of attributes[0].values) {
-    if (value.file?.url) {
-      url = value.file.url;
-      break;
+  const attributes = page?.attributes ?? [];
+
+  const getUrl = () => {
+    try {
+      for (const value of attributes?.[0]?.values) {
+        if (value.file?.url) {
+          return value.file.url;
+        }
+      }
+    } catch (error) {
+      return null;
     }
-  }
-  if (!url) return null;
+  };
+  let url = getUrl();
 
   return (
     <>

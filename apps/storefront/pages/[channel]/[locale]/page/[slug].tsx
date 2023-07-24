@@ -55,7 +55,12 @@ function PagePage({ page }: InferGetStaticPropsType<typeof getStaticProps>) {
   const content = translate(page, "content");
 
   return (
-    <main className="container pt-8 px-8">{content && <RichText jsonStringData={content} />}</main>
+    <>
+      <hr />
+      <main className="container pt-8 px-8">
+        {content && <RichText jsonStringData={content} />}
+      </main>
+    </>
   );
 }
 
