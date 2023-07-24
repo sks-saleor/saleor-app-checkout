@@ -30,6 +30,7 @@ export interface FilteredProductListProps {
   productTypeIDs?: string[];
   isRelated?: boolean;
   perPage?: number;
+  showRating?: boolean;
 }
 
 export interface Filters {
@@ -44,6 +45,7 @@ export function FilteredProductList({
   productTypeIDs,
   isRelated,
   perPage = 40,
+  showRating,
 }: FilteredProductListProps) {
   const [queryFilters, setQueryFilters] = useQueryState("filters", {
     parse: parseQueryAttributeFilters,
@@ -194,6 +196,7 @@ export function FilteredProductList({
           sortBy={sortBy || undefined}
           setCounter={setItemsCounter}
           perPage={perPage}
+          showRating={showRating}
           isRelated={isRelated}
         />
       </div>

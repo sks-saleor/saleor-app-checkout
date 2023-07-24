@@ -11,7 +11,7 @@ export const RelatedProducts: React.FC<IProps> = React.memo(({ product }) => {
 
   return (
     <div className="w-full pb-16">
-      <h2 className="text-lg font-bold text-indigo-500 mb-[15px]">Related Products</h2>
+      <h2 className="text-md font-bold text-indigo-500 mb-[15px]">Related Products</h2>
       <div className={styles["related-line"]}>
         <hr />
       </div>
@@ -19,7 +19,8 @@ export const RelatedProducts: React.FC<IProps> = React.memo(({ product }) => {
         attributeFiltersData={[]}
         productTypeIDs={[productType.id]}
         isRelated
-        perPage={5}
+        showRating
+        perPage={8}
       />
     </div>
   );

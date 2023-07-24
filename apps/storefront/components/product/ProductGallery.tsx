@@ -39,7 +39,7 @@ export function ProductGallery({ product, selectedVariant }: ProductGalleryProps
           return (
             <div
               key={media.url}
-              className="aspect-w-2 aspect-h-1 relative overflow-hidden"
+              className="aspect-w-1 aspect-h-1"
               style={{ scrollSnapAlign: "start" }}
             >
               {media.type === "IMAGE" && (

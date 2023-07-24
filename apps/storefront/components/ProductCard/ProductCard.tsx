@@ -7,10 +7,11 @@ import { ProductCardFragment } from "@/saleor/api";
 import { formatAsMoney } from "@/lib/util";
 import styles from "./ProductCard.module.css";
 import { Rating } from "../Rating";
+import Image from "next/legacy/image";
 
 export interface ProductCardProps {
   product: ProductCardFragment;
-  showAddToCart?: boolean;
+  showRating?: boolean;
 }
 
 const getCardSecondaryDescription = (product: ProductCardFragment) => {
@@ -27,7 +28,7 @@ const getCardSecondaryDescription = (product: ProductCardFragment) => {
   return "";
 };
 
-export function ProductCard({ product, showAddToCart = true }: ProductCardProps) {
+export function ProductCard({ product, showRating = false }: ProductCardProps) {
   const paths = usePaths();
   const secondaryDescription = getCardSecondaryDescription(product);
   const thumbnailUrl = product.media?.find((media) => media.type === "IMAGE")?.url;
@@ -43,9 +44,20 @@ export function ProductCard({ product, showAddToCart = true }: ProductCardProps)
       >
         <a href="pass">
           <div className="active:bg-brand aspect-1 w-[146px] m-auto">
-            <div className="bg-white relative">
+            <div className="bg-white aspect-w-1 aspect-h-1 relative">
               {thumbnailUrl ? (
-                <img src={thumbnailUrl} className="w-full h-[176px] object-contain" />
+                <Image
+                  src={thumbnailUrl}
+                  className="w-full"
+                  width={176}
+                  height={176}
+                  layout="fill"
+                  alt={product.name}
+                  objectFit="contain"
+                  role="button"
+                  tabIndex={-2}
+                  priority
+                />
               ) : (
                 <div className="grid justify-items-center content-center h-full w-full">
                   <PhotographIcon className="h-10 w-10 content-center" />
@@ -67,14 +79,11 @@ export function ProductCard({ product, showAddToCart = true }: ProductCardProps)
               {formatAsMoney(price?.amount, price?.currency)}
             </p>
           )}
-          {showAddToCart && (
-            <button className="mt-4 w-[183px] text-base border border-indigo-500 hover:border-indigo-400 text-indigo-500 hover:text-indigo-400 py-1 rounded-[100px] transition duration-100">
-              Add to cart
-            </button>
+          {showRating && (
+            <div className="mt-2 justify-center items-center flex">
+              <Rating totalStars={product?.rating ?? 0} />
+            </div>
           )}
-          <div className="mt-2 justify-center items-center flex">
-            <Rating />
-          </div>
         </a>
       </Link>
     </li>

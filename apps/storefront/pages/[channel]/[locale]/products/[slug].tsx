@@ -1,12 +1,11 @@
+import React, { ReactElement, useState } from "react";
 import { ApolloQueryResult } from "@apollo/client";
 import clsx from "clsx";
 import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Custom404 from "pages/404";
-import React, { ReactElement, useState } from "react";
 import { useIntl } from "react-intl";
-
 import { Layout, RichText, VariantSelector } from "@/components";
 import { useRegions } from "@/components/RegionsProvider";
 import { AttributeDetails } from "@/components/product/AttributeDetails";
@@ -30,6 +29,8 @@ import {
 import { serverApolloClient } from "@/lib/ssr/common";
 import { Breadcrumb } from "@/components/PageHero/Breadcrumb";
 import { RelatedProducts } from "@/components/product/RelatedProducts";
+import { Descriptions } from "@/components/product/Descriptions";
+import { Rating } from "@/components/Rating";
 
 export type OptionalQuery = {
   variant?: string;
@@ -156,8 +157,6 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
   const isAddToCartButtonDisabled =
     !selectedVariant || selectedVariant?.quantityAvailable === 0 || loadingAddToCheckout;
 
-  const description = translate(product, "description");
-
   const price = product.pricing?.priceRange?.start?.gross;
   const shouldDisplayPrice = product.variants?.length === 1 && price;
 
@@ -180,6 +179,9 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
         </div>
         <div className="space-y-5 mt-10 md:mt-0">
           <div>
+            <div className="mb-4">
+              <Rating totalStars={product.rating || 0} showReview />
+            </div>
             <h1
               className="text-4xl font-bold tracking-tight text-gray-800"
               data-testid="productName"
@@ -191,19 +193,6 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
                 {formatPrice(price)}
               </h2>
             )}
-            {!!product.category?.slug && (
-              <Link
-                href={paths.category._slug(product?.category?.slug).$url()}
-                passHref
-                legacyBehavior
-              >
-                <a>
-                  <p className="text-md mt-2 font-medium text-gray-600 cursor-pointer">
-                    {translate(product.category, "name")}
-                  </p>
-                </a>
-              </Link>
-            )}
           </div>
           <VariantSelector product={product} selectedVariantID={selectedVariantID} />
           <button
@@ -211,7 +200,7 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
             type="submit"
             disabled={isAddToCartButtonDisabled}
             className={clsx(
-              "w-full py-3 px-8 flex items-center justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent focus:outline-none",
+              "w-full py-3 px-8 flex items-center rounded-md justify-center text-base bg-action-1 text-white disabled:bg-disabled hover:bg-white border-2 border-transparent focus:outline-none",
               !isAddToCartButtonDisabled && "hover:border-action-1 hover:text-action-1"
             )}
             data-testid="addToCartButton"
@@ -231,14 +220,42 @@ function ProductPage({ product }: InferGetStaticPropsType<typeof getStaticProps>
             </p>
           )}
           {!!addToCartError && <p>{addToCartError}</p>}
-          {description && (
-            <div className="space-y-6">
-              <RichText jsonStringData={description} />
+          {!!product.productType?.name && (
+            <div className="flex items-center mt-2">
+              <p className="text-md font-medium text-[#848484] pr-2">Product Type:</p>
+              <Link
+                href={paths.productType._slug(product?.productType?.id).$url()}
+                passHref
+                legacyBehavior
+              >
+                <a>
+                  <p className="text-md  font-medium text-[#ADADAD] cursor-pointer">
+                    {product.productType.name}
+                  </p>
+                </a>
+              </Link>
+            </div>
+          )}
+          {!!product.category?.slug && (
+            <div className="flex items-center mt-2">
+              <p className="text-md font-medium text-[#848484] pr-2">Category:</p>
+              <Link
+                href={paths.category._slug(product?.category?.slug).$url()}
+                passHref
+                legacyBehavior
+              >
+                <a>
+                  <p className="text-md  font-medium text-[#ADADAD] cursor-pointer">
+                    {translate(product.category, "name")}
+                  </p>
+                </a>
+              </Link>
             </div>
           )}
           <AttributeDetails product={product} selectedVariant={selectedVariant} />
         </div>
-        <div className="col-span-12">
+        <div className="col-span-12 mt-4">
+          <Descriptions product={product} />
           <RelatedProducts product={product} />
         </div>
       </main>

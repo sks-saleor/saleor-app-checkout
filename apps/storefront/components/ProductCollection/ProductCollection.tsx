@@ -26,6 +26,7 @@ export interface ProductCollectionProps {
   allowMore?: boolean;
   perPage?: number;
   setCounter?: (value: number) => void;
+  showRating?: boolean;
   isRelated?: boolean;
 }
 
@@ -35,6 +36,7 @@ export function ProductCollection({
   setCounter,
   allowMore = true,
   perPage = 50,
+  showRating,
   isRelated,
 }: ProductCollectionProps) {
   const t = useIntl();
@@ -85,11 +87,15 @@ export function ProductCollection({
   return (
     <div>
       <ul
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8"
+        className={`grid gap-8 ${
+          isRelated
+            ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
+            : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6"
+        }`}
         data-testid="productsList"
       >
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} showAddToCart={!isRelated} />
+          <ProductCard key={product.id} product={product} showRating={showRating} />
         ))}
       </ul>
       {allowMore && (
