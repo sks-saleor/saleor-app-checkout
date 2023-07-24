@@ -38,14 +38,5 @@ export const getOrderDetails = async (
     };
   }
 
-  if (process.env.DEMO_MODE) {
-    return {
-      data: {
-        ...data.order,
-        userEmail: "checkout@example.com",
-      },
-    };
-  }
-
   return { data: data.order };
 };

@@ -100,10 +100,6 @@ module.exports = withBundleAnalyzer({
               destination: `${cloudDeploymentUrl}/media/:match*`,
             },
             {
-              source: "/dashboard/:match*",
-              destination: `${cloudDeploymentUrl}/dashboard/:match*`,
-            },
-            {
               source: "/graphql/:match*",
               destination: `${cloudDeploymentUrl}/graphql/:match*`,
             },

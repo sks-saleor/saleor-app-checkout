@@ -16,10 +16,10 @@ function Custom404() {
 
         <div className="py-10">
           <header className="mb-4">
-            <div className="container px-8">Page not found</div>
+            <div className="container px-8 text-lg">Page not found</div>
           </header>
           <main>
-            <div className="container px-8">
+            <div className="container px-8 text-base">
               <Link href={paths.$url()}>Go back home</Link>
             </div>
           </main>

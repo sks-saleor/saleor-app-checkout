@@ -5,7 +5,6 @@ import { useIntl } from "react-intl";
 
 import { useRegions } from "@/components/RegionsProvider";
 import { messages } from "@/components/translations";
-import { DEMO_MODE } from "@/lib/const";
 import { usePaths } from "@/lib/paths";
 import { useCheckout } from "@/lib/providers/CheckoutProvider";
 import {
@@ -42,17 +41,7 @@ export function DummyCreditCardSection({ checkout }: DummyCreditCardSectionInter
     total: formatPrice(totalPrice),
   });
 
-  const defaultValues = DEMO_MODE
-    ? {
-        cardNumber: "4242 4242 4242 4242",
-        expDate: "12/34",
-        cvc: "123",
-      }
-    : {};
-
-  const { register: registerCard, handleSubmit: handleSubmitCard } = useForm<CardForm>({
-    defaultValues,
-  });
+  const { register: registerCard, handleSubmit: handleSubmitCard } = useForm<CardForm>({});
 
   const redirectToOrderDetailsPage = async () => {
     // without the `await` checkout data will be removed before the redirection which will cause issue with rendering checkout view
