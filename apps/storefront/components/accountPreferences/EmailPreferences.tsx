@@ -93,7 +93,7 @@ export function EmailPreferences() {
           {!!successMessage && <p className="mt-2 text-sm text-green-600">{successMessage}</p>}
           <div className="mt-2">
             <button
-              className="w-40 bg-indigo-500 hover:bg-indigo-400 text-white py-2 rounded-md transition duration-100"
+              className="w-full text-base md:w-40 bg-indigo-500 hover:bg-indigo-400 text-white py-2 rounded-md transition duration-100"
               onClick={() => onEmailPreferenceSubmit()}
               type="submit"
             >

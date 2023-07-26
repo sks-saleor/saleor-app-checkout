@@ -29,6 +29,5 @@ AccountPreferencesPage.getLayout = function getLayout(
   router: AppProps["router"]
 ) {
   const { isNativeWebView = true } = getQueryParams(router);
-
   return <AccountLayout bodyOnly={isNativeWebView}>{page}</AccountLayout>;
 };

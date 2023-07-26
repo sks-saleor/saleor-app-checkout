@@ -47,7 +47,7 @@ export function HomepageBlock({ menuItem }: HomepageBlockProps) {
       <p className="text-center text-base pb-8 text-gray-500">
         We have everything you need to make your life easier. From fresh groceries to household
       </p>
-      <ProductCollection filter={filter} allowMore={false} />
+      <ProductCollection filter={filter} allowMore={false} perPage={24} />
       <div className="flex flex-row-reverse p-4">
         <Link href={link} passHref legacyBehavior>
           <a href="pass">

@@ -8,7 +8,7 @@
   }
 
   .checkout-section-container {
-    @apply bg-white rounded p-4 border;
+    @apply bg-white border-b md:rounded pb-4 px-8 md:px-4 md:py-4 md:border;
   }
 
   .checkout-section-header-active {

@@ -17,7 +17,7 @@ export function AccountLayout({ children, bodyOnly }: AccountLayoutProps) {
 
   if (isAuthenticating || loading) {
     return (
-      <Layout>
+      <Layout bodyOnly={bodyOnly}>
         <Spinner />
       </Layout>
     );
@@ -33,7 +33,7 @@ export function AccountLayout({ children, bodyOnly }: AccountLayoutProps) {
   return (
     <Layout bodyOnly={bodyOnly}>
       <div className="py-10">
-        <main className="flex flex-col md:flex-row container px-8">
+        <main className="flex flex-col md:flex-row md:container md:px-8">
           {!bodyOnly && (
             <div className="mb-2 flex-initial md:w-3/5">
               <NavigationPanel />

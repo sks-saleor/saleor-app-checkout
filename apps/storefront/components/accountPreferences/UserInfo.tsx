@@ -73,10 +73,10 @@ export function UserInfo() {
 
   return (
     <div className="mt-2 mb-2">
-      <h2 className="checkout-section-header-active mb-2 text-base">General</h2>
+      <h2 className="checkout-section-header-active mb-2 text-base hidden md:block">General</h2>
       <form method="post" onSubmit={onUserInfoPreferenceSubmit}>
-        <div className="pb-6 pt-3">
-          <div className={`${styles["avatar"]} ml-4 mb-1`}>
+        <div className="pb-6 pt-3 text-center md:text-left">
+          <div className={`${styles["avatar"]} m-auto md:ml-4 mb-1 items-center`}>
             {user?.avatar?.url ? (
               <img src={user?.avatar?.url} alt="avatar" className="rounded-full w-full h-full" />
             ) : (
@@ -145,7 +145,7 @@ export function UserInfo() {
         {!!successMessage && <p className="mt-2 text-sm text-green-600">{successMessage}</p>}
         <div className="mt-4">
           <button
-            className=" w-40 bg-indigo-500 hover:bg-indigo-400 text-white py-2 rounded-md transition duration-100"
+            className="w-full text-base md:w-40 bg-indigo-500 hover:bg-indigo-400 text-white py-2 rounded-md transition duration-100"
             onClick={() => onUserInfoPreferenceSubmit()}
             type="submit"
           >
